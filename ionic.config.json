@@ -1,0 +1,7 @@
+{
+  "name": "HamLaundry-Frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
