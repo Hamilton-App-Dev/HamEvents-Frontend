@@ -1,10 +1,6 @@
-import { startTransition, useEffect, useState } from "react";
-import "./EventCard.css";
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonTitle, IonButtons,IonToolbar, IonButton, IonInfiniteScroll, IonInfiniteScrollContent } from '@ionic/react';
-
-interface ContainerProps {}
-
+import { cachedDataVersionTag } from 'v8';
 const testObj = [
     {
         id: "f2236ece-e14a-11ed-b5ea-0242ac120002",
@@ -185,63 +181,94 @@ const testObj = [
         location: "Glen House, Map #10",
         food: true,
         cancelled: false,
+    },
+    {
+        id: "f2236ece-e14a-11ed-b5ea-0242ac120017",
+        name: "Spring Forage",
+        description: "If you're looking for something fun to do this morning to celebrate Earth Day, come\
+        learn to forage! We're meeting at the Glen House at 11 - bring good walking or hiking shoes, layers, and a basket or bag.",
+        cover_img: "",
+        event_time_start: new Date("2023-04-22T21:00:00"),
+        event_time_end: new Date("2023-04-22T23:30:00"),
+        location: "Glen House, Map #10",
+        food: true,
+        cancelled: false,
+    },
+    {
+        id: "f2236ece-e14a-11ed-b5ea-0242ac120018",
+        name: "Spring Forage",
+        description: "If you're looking for something fun to do this morning to celebrate Earth Day, come\
+        learn to forage! We're meeting at the Glen House at 11 - bring good walking or hiking shoes, layers, and a basket or bag.",
+        cover_img: "",
+        event_time_start: new Date("2023-04-22T21:00:00"),
+        event_time_end: new Date("2023-04-22T23:30:00"),
+        location: "Glen House, Map #10",
+        food: true,
+        cancelled: false,
+    },
+    {
+        id: "f2236ece-e14a-11ed-b5ea-0242ac120019",
+        name: "Spring Forage",
+        description: "If you're looking for something fun to do this morning to celebrate Earth Day, come\
+        learn to forage! We're meeting at the Glen House at 11 - bring good walking or hiking shoes, layers, and a basket or bag.",
+        cover_img: "",
+        event_time_start: new Date("2023-04-22T21:00:00"),
+        event_time_end: new Date("2023-04-22T23:30:00"),
+        location: "Glen House, Map #10",
+        food: true,
+        cancelled: false,
     }
 ];
 
-const card = testObj.map((data) => {
-    const startTimeTrim = data.event_time_start.toString().trim().split(/[ ,]+/);
-    const endTimeTrim = data.event_time_end.toString().trim().split(/[ ,]+/);
-    const startTime = startTimeTrim[0] + ", " + startTimeTrim.slice(1,3).toString().replace(/,/g, ' ') + ", " + startTimeTrim[4];
-    var endTime = endTimeTrim[0] + ", " + endTimeTrim.slice(1,3).toString().replace(/,/g, ' ') + ", " + endTimeTrim[4];
-    if (endTimeTrim[0] === startTimeTrim[0]){
-        endTime = endTimeTrim[4];
-    }
-    return (
-        <IonCard key={data.id} className="card">
-            <img alt="Silhouette of mountains" src="https://picsum.photos/400/300"/>
-            <IonCardHeader>
-                <IonCardTitle>{data.name}</IonCardTitle>
-                <IonCardSubtitle>{data.location}</IonCardSubtitle>
-                <IonCardSubtitle>{startTime} - {endTime}</IonCardSubtitle>
-            </IonCardHeader>
-    
-            <IonCardContent>
-                {data.description}
-            </IonCardContent>
-            <IonToolbar className="btnGroup">
-                <IonButtons slot="start">
-                    <IonButton className="btn" color="primary">More</IonButton>
-                </IonButtons>
-                <IonButtons slot="end">
-                    <IonButton className="btn" color="primary">Attending</IonButton>
-                </IonButtons>
-            </IonToolbar>
-      </IonCard>
-    )
+const cards = testObj.map((card) => {
+    const startTimeTrim = card.event_time_start.toString().trim().split(/[ ,]+/);
+        const endTimeTrim = card.event_time_end.toString().trim().split(/[ ,]+/);
+        const startTime = startTimeTrim[0] + ", " + startTimeTrim.slice(1,3).toString().replace(/,/g, ' ') + ", " + startTimeTrim[4];
+        var endTime = endTimeTrim[0] + ", " + endTimeTrim.slice(1,3).toString().replace(/,/g, ' ') + ", " + endTimeTrim[4];
+        if (endTimeTrim[0] === startTimeTrim[0]){
+            endTime = endTimeTrim[4];
+        }
+        return (
+            <IonCard key={card.id} className="card">
+                    <div className="wordContainer">
+                        <IonCardHeader className="header">
+                            <IonCardTitle>{card.name}</IonCardTitle>
+                            <IonCardSubtitle>{card.location}</IonCardSubtitle>
+                            <IonCardSubtitle>{startTime} - {endTime}</IonCardSubtitle>
+                        </IonCardHeader>
+                
+                        <IonCardContent>
+                            {card.description}
+                        </IonCardContent>
+                        <IonToolbar className="btnGroup">
+                            <IonButtons slot="start">
+                                <IonButton className="btn" color="primary">More</IonButton>
+                            </IonButtons>
+                            <IonButtons slot="end">
+                                <IonButton className="btn" color="primary">Attending</IonButton>
+                            </IonButtons>
+                        </IonToolbar>
+                    </div>
+              </IonCard>
+            )
+
 })
-function EventCard() {
-    return(
-        <>
-        <div className="container">
-            {card}
-        </div>
-        </>
-    );
+
+function displayCards() {
+  return (
+	<>
+	<div className="conatiner">
+        {cards}
+      <IonInfiniteScroll
+        onIonInfinite={(ev) => {
+          setTimeout(() => ev.target.complete(), 300);
+        }}
+      >
+        <IonInfiniteScrollContent></IonInfiniteScrollContent>
+      </IonInfiniteScroll>
+	</div>
+	</>
+  );
 }
-export default EventCard;
 
-// const EventCard: React.FC<ContainerProps> = () => {
-// 	let [response, setResponse] = useState("");
-// 	useEffect(() => {
-// 		fetch("http://localhost:3000/")
-// 			.then((response) => response.json())
-// 			.then((data) => setResponse(data.msg));
-// 	});
-// 	return (
-// 		<div className="container">
-// 			<strong>{response}</strong>
-
-// 		</div>
-// 	);
-// };
-// export default EventCard;
+export default displayCards;

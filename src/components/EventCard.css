@@ -1,25 +1,31 @@
 .container{
-    padding: 30px;
     display: grid;
     overflow: hidden;
-    grid-template-columns: repeat(5, 1fr);
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
-    grid-auto-rows: 1fr;
-    justify-content: center;
-    align-items:stretch;
-
+    padding: 30px;
+    padding-right: 50px;
+}
+.header{
+    margin-bottom: 10px;
 }
 .card{
     color: black;
-    padding: 15px;
-    display: flex;
-    gap:10px;
-    flex-wrap: nowrap;
+    display: grid;
+    padding: 5px;
+    overflow: hidden;
+    grid-auto-columns: 1fr 2fr;
+    justify-items: center;
+    grid-auto-flow: column;
+    /* gap:5px;
     flex-grow: 1;
-    flex-direction: column;
-    text-align: center;
+    flex-direction: row; */
     width: 100% !important;
+}
+.wordContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+
 }
 .btnGroup{
     margin-top: auto;
