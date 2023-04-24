@@ -1,0 +1,27 @@
+.container{
+    padding: 30px;
+    display: grid;
+    overflow: hidden;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    grid-auto-rows: 1fr;
+    justify-content: center;
+    align-items:stretch;
+
+}
+.card{
+    color: black;
+    padding: 15px;
+    display: flex;
+    gap:10px;
+    flex-wrap: nowrap;
+    flex-grow: 1;
+    flex-direction: column;
+    text-align: center;
+    width: 100% !important;
+}
+.btnGroup{
+    margin-top: auto;
+    display: flex;
+}
