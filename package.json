@@ -17,10 +17,7 @@
 		"@testing-library/user-event": "^12.6.3",
 		"@types/jest": "^26.0.20",
 		"@types/node": "^12.19.15",
-		"@types/react": "^18.0.17",
-		"@types/react-dom": "^18.0.6",
 		"@types/react-router": "^5.1.11",
-		"@types/react-router-dom": "^5.1.7",
 		"history": "^4.9.0",
 		"ionicons": "^6.0.3",
 		"react": "^18.2.0",
@@ -47,7 +44,8 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"preinstall": "npm install --package-lock-only --ignore-scripts && npx npm-force-resolutions"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -71,7 +69,13 @@
 		]
 	},
 	"devDependencies": {
-		"@capacitor/cli": "4.7.0"
+		"@capacitor/cli": "4.7.0",
+		"@types/react": "^18.0.38",
+		"@types/react-dom": "^18.0.11",
+		"@types/react-router-dom": "^5.3.3"
+	},
+	"resolutions": {
+		"@types/react": "^17.0.38"
 	},
 	"description": "An Ionic project"
 }
