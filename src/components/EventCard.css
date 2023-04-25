@@ -1,12 +1,14 @@
 .container{
     display: grid;
     overflow: hidden;
-    padding: 30px;
+    padding: 50px;
     padding-right: 50px;
 }
 .header{
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    padding: 10px;
 }
+
 .card{
     color: black;
     display: grid;
