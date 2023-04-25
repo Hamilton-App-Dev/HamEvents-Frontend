@@ -271,7 +271,6 @@ function MyComponent() {
       }
     return {"start": startTime, "end": endTime};
   }
-  // myArrayOfCards is your array of cards data source
   // slice(0, 10) returns the first 10 items from the array
 
   function loadMoreCards() {
