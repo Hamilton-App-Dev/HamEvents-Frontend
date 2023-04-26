@@ -67,8 +67,12 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
 
   return (
       <IonContent>
-        <IonSearchbar placeholder='Search for a card...' value={searchTerm} onIonChange={(e) => setSearchTerm(e.detail.value!)} ></IonSearchbar>
-        {cards.map((card, index) => (
+        <IonSearchbar 
+          placeholder='Search for an event...' 
+          value={searchTerm} 
+          onIonChange={(e) => setSearchTerm(e.detail.value!)}>
+        </IonSearchbar>
+        {cards.map((card) => (
           <IonCard key={card.id}>
             <IonCardHeader className="header">
                 <IonCardTitle className='cardName'>{card.name}</IonCardTitle>
