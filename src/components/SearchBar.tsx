@@ -1,6 +1,13 @@
 import { useEffect, useState, Component, ReactNode } from 'react';
 import { IonContent } from '@ionic/react';
-import { IonCard, IonSearchbar, IonCardSubtitle, IonButton, IonButtons, IonToolbar, IonInfiniteScrollContent, IonInfiniteScroll, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import { 
+  IonCard, IonSearchbar, IonCardSubtitle, 
+  IonButton, IonButtons, IonToolbar, 
+  IonInfiniteScrollContent, IonInfiniteScroll, 
+  IonCardContent, IonCardHeader, IonCardTitle 
+} from '@ionic/react';
+
 import "./SearchBar.css";
 import "./EventCard";
 import "./EventCard"
@@ -62,7 +69,7 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
       <IonContent>
         <IonSearchbar placeholder='Search for a card...' value={searchTerm} onIonChange={(e) => setSearchTerm(e.detail.value!)} ></IonSearchbar>
         {cards.map((card, index) => (
-          <IonCard key={index}>
+          <IonCard key={card.id}>
             <IonCardHeader className="header">
                 <IonCardTitle className='cardName'>{card.name}</IonCardTitle>
                 <IonCardSubtitle>{card.location}</IonCardSubtitle>
@@ -76,7 +83,9 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
             </IonCardContent>
             <IonToolbar className="btnGroup">
               <IonButtons slot="start">
-                <IonButton className="btn" color="primary">More</IonButton>
+                <Link to={`/details/${card.id}`} >
+                  <IonButton className="btn" color="primary">More</IonButton>
+                </Link>
               </IonButtons>
               <IonButtons slot="end">
                   <IonButton className="btn" color="primary">Attending</IonButton>

@@ -268,7 +268,7 @@ const Home: React.FC = () => {
         <IonPage>
             <IonHeader>
                 <IonToolbar>
-                    <IonTitle>Blank</IonTitle>
+                    <IonTitle>Events Listing Page</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>
