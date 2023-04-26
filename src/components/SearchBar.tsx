@@ -1,6 +1,6 @@
 import { useEffect, useState, Component, ReactNode } from 'react';
 import { IonContent } from '@ionic/react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import { BrowserRouter as Router, Route, Link, useHistory } from "react-router-dom"
 import { 
   IonCard, IonSearchbar, IonCardSubtitle, 
   IonButton, IonButtons, IonToolbar, 
@@ -9,8 +9,7 @@ import {
 } from '@ionic/react';
 
 import "./SearchBar.css";
-import "./EventCard(temp)";
-import "./EventCard(temp)"
+import ButtonPage from './DetailsBtn';
 import MyComponent from './EventCard(temp)';
 
 type Card = {
@@ -36,7 +35,6 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
   // );
   const [cards, setCards] = useState(myArrayOfCards.slice(0, 5));
 
-  console.log(cards);
   function transformTime(card: { event_time_start: { toString: () => string; }; event_time_end: { toString: () => string; }; }) {
     var startTimeTrim, endTimeTrim, startTime, endTime;
       startTimeTrim = card.event_time_start.toString().trim().split(/[ ,]+/);
@@ -57,6 +55,11 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
     const nextCards = filteredCards.slice(cards.length, cards.length + 5);
     setCards([...cards, ...nextCards]);
   }
+
+  const history = useHistory();
+  const handleDetails = (id: string) => {
+    history.push(`/details/${id}`, {data: myArrayOfCards});
+  };
 
   useEffect(() => {
     const filteredCards = myArrayOfCards.filter((card) =>
@@ -87,9 +90,12 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
             </IonCardContent>
             <IonToolbar className="btnGroup">
               <IonButtons slot="start">
-                <Link to={`/details/${card.id}`} >
-                  <IonButton className="btn" color="primary">More</IonButton>
-                </Link>
+                  <IonButton 
+                    onClick={()=>handleDetails(card.id)} 
+                    className="btn" 
+                    color="primary">
+                      More
+                  </IonButton>
               </IonButtons>
               <IonButtons slot="end">
                   <IonButton className="btn" color="primary">Attending</IonButton>

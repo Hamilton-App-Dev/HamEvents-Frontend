@@ -1,8 +1,9 @@
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
-
+import SubPage from './components/SubPage';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -25,15 +26,20 @@ import './theme/variables.css';
 setupIonicReact();
 
 const App: React.FC = () => (
+  //Had to nest Switch inside IonouterOutlet to fix the issue of the details page not being immediately 
+  //rendered after clicking the button
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
+        <Switch>
+          <Route exact path="/home">
+            <Home />
+          </Route>
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+          <Route exact path="/details/:id" component={SubPage}/>
+        </Switch>
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
