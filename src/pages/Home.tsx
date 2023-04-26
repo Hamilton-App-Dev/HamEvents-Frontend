@@ -5,7 +5,7 @@ import {
     IonTitle,
     IonToolbar,
 } from "@ionic/react";
-import MyComponent from "../components/EventCard";
+import MyComponent from "../components/EventCard(temp)";
 import FilteredCardList from "../components/SearchBar";
 import "./Home.css";
 const myArrayOfCards = [

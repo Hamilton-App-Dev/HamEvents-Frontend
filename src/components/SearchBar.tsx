@@ -9,9 +9,9 @@ import {
 } from '@ionic/react';
 
 import "./SearchBar.css";
-import "./EventCard";
-import "./EventCard"
-import MyComponent from './EventCard';
+import "./EventCard(temp)";
+import "./EventCard(temp)"
+import MyComponent from './EventCard(temp)';
 
 type Card = {
   id: string;
