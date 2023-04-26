@@ -272,11 +272,9 @@ function MyComponent() {
     return {"start": startTime, "end": endTime};
   }
   // slice(0, 10) returns the first 10 items from the array
-
   function loadMoreCards() {
     const nextCards = myArrayOfCards.slice(cards.length, cards.length + 5);
     setCards([...cards, ...nextCards]);
-    console.log(cards.length);
   }
   return (
     <IonContent className='container'>
