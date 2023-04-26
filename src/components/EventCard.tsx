@@ -1,7 +1,7 @@
-import { useEffect, useState, Component } from 'react';
+import { useEffect, useState, Component, ReactNode } from 'react';
 import { IonContent } from '@ionic/react';
 import { IonCard, IonCardSubtitle, IonButton, IonButtons, IonToolbar, IonInfiniteScrollContent, IonInfiniteScroll, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
-import "./EventCard";
+import "./EventCard.css";
 const myArrayOfCards = [
   {
       id: "f2236ece-e14a-11ed-b5ea-0242ac120002",
@@ -256,9 +256,7 @@ const myArrayOfCards = [
     cancelled: false,
   }
 ];
-class Search extends Component {
 
-}
 function MyComponent() {
   const [cards, setCards] = useState(myArrayOfCards.slice(0, 5));
 
@@ -281,15 +279,11 @@ function MyComponent() {
     console.log(cards.length);
   }
   return (
-    <div className='container'>
-    <Search>
-
-    </Search>
-    <IonContent>
+    <IonContent className='container'>
       {cards.map((card, index) => (
         <IonCard key={index}>
             <IonCardHeader className="header">
-                <IonCardTitle>{card.name}</IonCardTitle>
+                <IonCardTitle className='cardName'>{card.name}</IonCardTitle>
                 <IonCardSubtitle>{card.location}</IonCardSubtitle>
                 <IonCardSubtitle>
                   {transformTime(card).start} - {transformTime(card).end}
@@ -314,7 +308,6 @@ function MyComponent() {
         </IonInfiniteScrollContent>
       </IonInfiniteScroll>
     </IonContent>
-    </div>
   );
   
 }
