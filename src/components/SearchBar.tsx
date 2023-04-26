@@ -2,6 +2,7 @@ import { useEffect, useState, Component, ReactNode } from 'react';
 import { IonContent } from '@ionic/react';
 import { IonCard, IonSearchbar, IonCardSubtitle, IonButton, IonButtons, IonToolbar, IonInfiniteScrollContent, IonInfiniteScroll, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
 import "./SearchBar.css";
+import "./EventCard";
 import "./EventCard"
 import MyComponent from './EventCard';
 
@@ -49,7 +50,7 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
     const nextCards = filteredCards.slice(cards.length, cards.length + 5);
     setCards([...cards, ...nextCards]);
   }
-  
+
   useEffect(() => {
     const filteredCards = myArrayOfCards.filter((card) =>
       card.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -58,13 +59,6 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
   }, [searchTerm, myArrayOfCards]);
 
   return (
-    // <div>
-    //   <input
-    //     type="text"
-    //     placeholder="Search for a card..."
-    //     value={searchTerm}
-    //     onChange={(e) => setSearchTerm(e.target.value)}
-    //   />
       <IonContent>
         <IonSearchbar placeholder='Search for a card...' value={searchTerm} onIonChange={(e) => setSearchTerm(e.detail.value!)} ></IonSearchbar>
         {cards.map((card, index) => (
@@ -90,12 +84,14 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
             </IonToolbar>
           </IonCard>
         ))}
-        <IonInfiniteScroll onIonInfinite={(ev)=>{loadMoreCards(); setTimeout(() => ev.target.complete(), 500);}}>
+        <IonInfiniteScroll onIonInfinite={
+          (ev)=>{
+            loadMoreCards(); setTimeout(() => ev.target.complete(), 500);
+          }}>
         <IonInfiniteScrollContent loadingSpinner="bubbles">
         </IonInfiniteScrollContent>
         </IonInfiniteScroll>
         </IonContent>
-     // </div>
   );
 };
 
