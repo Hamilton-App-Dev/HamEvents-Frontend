@@ -1,7 +1,7 @@
 import { useEffect, useState, Component, ReactNode } from 'react';
 import { IonContent } from '@ionic/react';
 import { IonCard, IonCardSubtitle, IonButton, IonButtons, IonToolbar, IonInfiniteScrollContent, IonInfiniteScroll, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
-import "./EventCard.css";
+import "./EventCard(temp).css";
 const myArrayOfCards = [
   {
       id: "f2236ece-e14a-11ed-b5ea-0242ac120002",
