@@ -8,7 +8,7 @@ import {
   IonCardContent, IonCardHeader, IonCardTitle 
 } from '@ionic/react';
 import Details from './EventDetails'
-
+import "./SearchBar.css";
 interface Props {
   data: {
     id: string;
@@ -56,7 +56,12 @@ const SubPage: React.FC = () => {
     )
   }
 
-  return <Details data={[card]}/>;
+  return (
+	<IonContent className='subPageContainer'>
+  		<Details data={[card]} />
+	</IonContent>
+  )
+
 }
 
 export default SubPage;
