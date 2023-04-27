@@ -67,7 +67,7 @@ const myArrayOfCards = [
         event_time_start: new Date("2023-04-21T14:00:00"),
         event_time_end: new Date("2023-04-22T16:00:00"),
         location: "Bab Pav, Map #15",
-        food: true,
+        food: false,
         cancelled: false,
     },
     {

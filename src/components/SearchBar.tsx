@@ -8,8 +8,6 @@ import {
 } from '@ionic/react';
 
 import "./SearchBar.css";
-import ButtonPage from './DetailsBtn';
-import MyComponent from './EventCard(temp)';
 
 type Card = {
   id: string;
