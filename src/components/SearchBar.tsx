@@ -1,3 +1,5 @@
+//filter and render events
+//need a go back to top button
 import { useEffect, useState, Component, ReactNode } from 'react';
 import { BrowserRouter as Router, Route, Link, useHistory } from "react-router-dom"
 import { 
