@@ -71,23 +71,9 @@ const Details: FC<Props> = ({ data }) => {
               </IonCard>
           </IonCardContent>
           </IonCard>
-
           </IonContent>
         ))}
       </IonContent>
-
-
-      
-      
-      // <div>
-      //     <h1>Event Details</h1>
-      //     {data.map((item) => (
-      //       <div key={item.id}>
-      //         <h2>{item.name}</h2>
-      //         <p>{item.description}</p>
-      //       </div>
-      //     ))}
-      //   </div></>
     );
   };
   
