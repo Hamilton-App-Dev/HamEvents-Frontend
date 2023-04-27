@@ -1,4 +1,10 @@
 import React, { FC } from 'react';
+import { 
+  IonCard, IonContent, IonSearchbar, IonCardSubtitle, 
+  IonButton, IonButtons, IonToolbar, 
+  IonInfiniteScrollContent, IonInfiniteScroll, 
+  IonCardContent, IonCardHeader, IonCardTitle 
+} from '@ionic/react';
 interface Props {
 	data: {
 		id: string;
@@ -14,15 +20,53 @@ interface Props {
 }
 const Details: FC<Props> = ({ data }) => {
     return (
-      <div>
-        <h1>Details Page</h1>
-        {data.map((item) => (
-          <div key={item.id}>
-            <h2>{item.name}</h2>
-            <p>{item.description}</p>
-          </div>
-        ))}
-      </div>
+      <IonContent>
+      {data.map((item) => (
+        <IonContent key={item.id}>
+        <IonCard color="primary">
+          <IonCardHeader>
+            <IonCardTitle>{item.name}</IonCardTitle>
+            <IonCardSubtitle>{item.event_time_start.toString()} - {item.event_time_end.toString()}</IonCardSubtitle>
+            <IonCardSubtitle>{item.location}</IonCardSubtitle>
+          </IonCardHeader>
+        </IonCard>
+
+        <IonCard color="light">
+        <IonCardHeader>
+          <IonCardTitle>Description:</IonCardTitle>
+        </IonCardHeader>
+
+        <IonCardContent>
+          {item.description}
+        </IonCardContent>
+        </IonCard>
+
+        <IonCard color="danger">
+        <IonCardHeader>
+          <IonCardTitle>🍕</IonCardTitle>
+          <IonCardSubtitle>{item.food}</IonCardSubtitle>
+        </IonCardHeader>
+
+        <IonCardContent>
+          
+        </IonCardContent>
+        </IonCard>
+        </IonContent>
+      ))}
+      </IonContent>
+
+
+      
+      
+      // <div>
+      //     <h1>Event Details</h1>
+      //     {data.map((item) => (
+      //       <div key={item.id}>
+      //         <h2>{item.name}</h2>
+      //         <p>{item.description}</p>
+      //       </div>
+      //     ))}
+      //   </div></>
     );
   };
   

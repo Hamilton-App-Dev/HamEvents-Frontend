@@ -1,8 +1,7 @@
 import { useEffect, useState, Component, ReactNode } from 'react';
-import { IonContent } from '@ionic/react';
 import { BrowserRouter as Router, Route, Link, useHistory } from "react-router-dom"
 import { 
-  IonCard, IonSearchbar, IonCardSubtitle, 
+  IonCard, IonContent, IonSearchbar, IonCardSubtitle, 
   IonButton, IonButtons, IonToolbar, 
   IonInfiniteScrollContent, IonInfiniteScroll, 
   IonCardContent, IonCardHeader, IonCardTitle 
