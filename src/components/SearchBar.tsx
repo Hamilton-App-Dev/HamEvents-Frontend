@@ -10,6 +10,7 @@ import {
 } from '@ionic/react';
 
 import "./SearchBar.css";
+import ScrollToTopButton from "./BackToTopBtn"
 
 type Card = {
   id: string;
@@ -68,12 +69,13 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
   }, [searchTerm, myArrayOfCards]);
 
   return (
-      <IonContent>
+      <IonContent className="container">
         <IonSearchbar 
           placeholder='Search for an event...' 
           value={searchTerm} 
           onIonChange={(e) => setSearchTerm(e.detail.value!)}>
         </IonSearchbar>
+        <ScrollToTopButton/>
         {cards.map((card) => (
           <IonCard key={card.id}>
             <IonCardHeader className="header">
@@ -106,10 +108,10 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
           (ev)=>{
             loadMoreCards(); setTimeout(() => ev.target.complete(), 500);
           }}>
-        <IonInfiniteScrollContent loadingSpinner="bubbles">
-        </IonInfiniteScrollContent>
+          <IonInfiniteScrollContent loadingSpinner="bubbles"></IonInfiniteScrollContent>
         </IonInfiniteScroll>
-        </IonContent>
+
+      </IonContent>
   );
 };
 
