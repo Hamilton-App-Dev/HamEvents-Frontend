@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"dependencies": {
-		"@auth0/auth0-react": "^2.0.1",
+		"@auth0/auth0-react": "^2.0.2",
 		"@capacitor/android": "4.7.0",
 		"@capacitor/app": "^4.1.1",
 		"@capacitor/browser": "^4.1.1",
@@ -50,7 +50,6 @@
 		"test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
 		"eject": "react-scripts eject",
 		"preinstall": "npm install --package-lock-only --ignore-scripts && npx npm-force-resolutions"
-		"eject": "react-scripts eject"
 	},
 	"eslintConfig": {
 		"extends": [
