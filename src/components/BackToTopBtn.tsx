@@ -22,7 +22,6 @@
 // }
 
 
-// export default ScrollToTopButton;
 import React, { useState, useEffect } from 'react';
 import './ScrollBtn.css';
 
@@ -31,7 +30,7 @@ const ScrollToTopButton: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.pageYOffset > 300) {
+      if (window.scrollY > 300) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -51,14 +50,21 @@ const ScrollToTopButton: React.FC = () => {
   };
 
   return (
-    <button
-      type='button'
-      className={`scroll-to-top-button ${isVisible ? 'visible' : ''}`}
-      onClick={handleButtonClick}
-    >
-      Scroll to top
-    </button>
+    <div className="App">
+    <h1>Hello!</h1>
+    <h2>Scroll down for the button to appear</h2>
+    <p style={{ marginTop: "150vh" }}>bottom</p>
+    </div>
+    // <button
+    //   type='button'
+    //   className={`scroll-to-top-button ${isVisible ? 'visible' : ''}`}
+    //   onClick={handleButtonClick}
+    // >
+    //   Scroll to top
+    // </button>
   );
 };
 
 export default ScrollToTopButton;
+
+
