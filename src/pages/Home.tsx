@@ -14,6 +14,7 @@ const Home: React.FC = () => {
 
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetch(`http://18.215.146.215/events/`)
       .then((response) => response.json())
@@ -25,7 +26,10 @@ const Home: React.FC = () => {
         setError(error.message);
         setData(null);
         console.log(error.message);
-    });
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
   return (
       <IonPage>
@@ -35,6 +39,10 @@ const Home: React.FC = () => {
               </IonToolbar>
           </IonHeader>
           <IonContent fullscreen>
+            {loading && <h1>Loading...One moment please</h1>}
+            {error && (
+              <div>{`There is a problem fetching the events data - ${error}`}</div>
+            )}
             {data && <FilteredCardList myArrayOfCards={data}></FilteredCardList>}
           </IonContent>
       </IonPage>
