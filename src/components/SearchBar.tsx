@@ -1,6 +1,6 @@
 //filter and render events
 //need a go back to top button
-import { useEffect, useState, Component, ReactNode } from 'react';
+import { useEffect, useState} from 'react';
 import { BrowserRouter as Router, Route, Link, useHistory } from "react-router-dom"
 import { 
   IonCard, IonContent, IonSearchbar, IonCardSubtitle, 
@@ -10,7 +10,7 @@ import {
 } from '@ionic/react';
 import ScrollToTop from "react-scroll-to-top";
 import "./SearchBar.css";
-
+import transformTime  from './TransformTime';
 type Card = {
   id: string;
   name: string;
@@ -34,20 +34,6 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
   // );
   const [cards, setCards] = useState(myArrayOfCards.slice(0, 5));
 
-  function transformTime(card: { event_time_start: { toString: () => string; }; event_time_end: { toString: () => string; }; }) {
-    var startTimeTrim, endTimeTrim, startTime, endTime;
-      startTimeTrim = card.event_time_start.toString().trim().split("T");
-      endTimeTrim = card.event_time_end.toString().trim().split("T");
-      console.log(endTimeTrim);
-      startTime = startTimeTrim[0] + ", " + startTimeTrim[1].slice(0,5);
-      endTime = endTimeTrim[0] + ", " + endTimeTrim[1].slice(0,5);
-      console.log(endTime);
-      if (endTimeTrim[0] === startTimeTrim[0]){
-          endTime = endTimeTrim[1].slice(0,5);
-      }
-    return {"start": startTime, "end": endTime};
-  }
-  // slice(0, 10) returns the first 10 items from the array
   function loadMoreCards() {
     console.log("loadMoreCards");
     const filteredCards = myArrayOfCards.filter((card) =>

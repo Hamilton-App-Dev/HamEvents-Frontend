@@ -1,13 +1,12 @@
 import React, { FC } from 'react';
-import { useState, useEffect } from 'react';
 import { 
-  IonCard, IonContent, IonSearchbar, IonHeader, IonCardSubtitle, 
-  IonButton, IonButtons, IonToolbar, IonTitle,
-  IonInfiniteScrollContent, IonInfiniteScroll, 
+  IonCard, IonContent, IonHeader, IonCardSubtitle, 
+  IonButton, IonToolbar, IonTitle,
   IonCardContent, IonCardHeader, IonCardTitle 
 } from '@ionic/react';
 import "./EventDetails.css";
 import FlashingColor from './FlashingColor';
+import transformTime from './TransformTime';
 interface Props {
 	data: {
 		id: string;
@@ -23,20 +22,6 @@ interface Props {
 }
 
 const Details: FC<Props> = ({ data }) => {
-  function transformTime(card: { event_time_start: { toString: () => string; }; event_time_end: { toString: () => string; }; }) {
-    var startTimeTrim, endTimeTrim, startTime, endTime;
-      startTimeTrim = card.event_time_start.toString().trim().split("T");
-      endTimeTrim = card.event_time_end.toString().trim().split("T");
-      console.log(endTimeTrim);
-      startTime = startTimeTrim[0] + ", " + startTimeTrim[1].slice(0,5);
-      endTime = endTimeTrim[0] + ", " + endTimeTrim[1].slice(0,5);
-      console.log(endTime);
-      if (endTimeTrim[0] === startTimeTrim[0]){
-          endTime = endTimeTrim[1].slice(0,5);
-      }
-    return {"start": startTime, "end": endTime};
-  }
-
   return (
     <IonContent className='container'>
       <IonHeader>
