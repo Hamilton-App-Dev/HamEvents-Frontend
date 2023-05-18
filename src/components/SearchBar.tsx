@@ -46,7 +46,9 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
   const history = useHistory();
   const handleDetails = (id: string) => {
     history.push(`/details/${id}`, {data: myArrayOfCards});
+    window.location.href = `/details/${id}`;
   };
+
 
   useEffect(() => {
     const filteredCards = myArrayOfCards.filter((card) =>

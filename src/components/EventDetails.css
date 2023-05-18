@@ -2,13 +2,17 @@
     text-align: center;
     text-decoration: solid;
 }
-.mainCard{
+.mainCard, .mapCard{
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     flex: 2 1 auto;
     padding: 10px;
 }
-.goingBtn{
+.Btns{
     align-self: stretch;
+    margin-right: 30px;
+}
+.mapCard{
+    margin-bottom: 60px;
 }

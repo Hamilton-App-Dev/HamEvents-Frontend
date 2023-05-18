@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import React, { FC, useState} from 'react';
+import { useHistory } from 'react-router';
 import { 
   IonCard, IonContent, IonHeader, IonCardSubtitle, 
   IonButton, IonToolbar, IonTitle,
@@ -7,6 +8,8 @@ import {
 import "./EventDetails.css";
 import FlashingColor from './FlashingColor';
 import transformTime from './TransformTime';
+import Map from './MapBox';
+
 interface Props {
 	data: {
 		id: string;
@@ -22,6 +25,16 @@ interface Props {
 }
 
 const Details: FC<Props> = ({ data }) => {
+  const history = useHistory();
+  const handleGoBack = () => {
+    history.goBack();
+  };
+
+/*   const [showMap, setShowMap] = useState(false);
+  const handleShowMap = () => {
+    setShowMap(true);
+  };
+ */
   return (
     <IonContent className='container'>
       <IonHeader>
@@ -41,9 +54,12 @@ const Details: FC<Props> = ({ data }) => {
             <br></br>
             <IonCardSubtitle>{item.location}</IonCardSubtitle>
           </IonCardHeader>
-          <IonCardContent className='goingBtn'>
+          <IonCardContent className='Btns'>
             <IonButton color='success'>
               I'm Going!
+            </IonButton>
+            <IonButton color='dark' onClick={handleGoBack}>
+              Browse More
             </IonButton>
           </IonCardContent>
         </IonCard>
@@ -67,6 +83,15 @@ const Details: FC<Props> = ({ data }) => {
               </IonCardHeader>
             </IonCard>
         </IonCardContent>
+        </IonCard>
+
+        <IonCard color="dark" className="mapCard">
+          <IonCardHeader>
+            <IonCardTitle>Map:</IonCardTitle>
+          </IonCardHeader>
+          <IonCardContent>
+             <Map initialLocation=''></Map>
+          </IonCardContent>
         </IonCard>
         </IonContent>
       ))}
