@@ -4,21 +4,20 @@ import { IonButton } from "@ionic/react";
 
 // This should reflect the URL added earlier to your "Allowed Logout URLs" setting
 // in the Auth0 dashboard.
-const logoutUri = "http://localhost:8100/home";
 // "YOUR_PACKAGE_ID://{yourDomain}/capacitor/YOUR_PACKAGE_ID/callback";
 
 const LogoutButton: React.FC = () => {
     const { logout } = useAuth0();
-
+    const logoutUrl = window.location.origin;
     const doLogout = async () => {
         await logout({
             logoutParams: {
-                returnTo: logoutUri,
+                returnTo: logoutUrl,
             },
             async openUrl(url) {
                 // Redirect using Capacitor's Browser plugin
                 await Browser.open({
-                    url,
+                    url: logoutUrl,
                     windowName: "_self",
                 });
             },

@@ -18,7 +18,7 @@ root.render(
         useRefreshTokens={true}
         useRefreshTokensFallback={false}
         authorizationParams={{
-            redirect_uri: "http://localhost:8100/home",
+            redirect_uri: window.location.href,
             // redirect_uri:
             //     "io.ionic.starter://localhost:8100/capacitor/io.ionic.starter/callback",
         }}
