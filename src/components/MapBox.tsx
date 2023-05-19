@@ -4,7 +4,7 @@ import mapboxgl from 'mapbox-gl';
 interface MapProps {
   initialLocation: string;
 }
-
+// Map Box Credentials
 if (process.env.REACT_APP_MapBox_API_KEY == undefined) {
   console.log( process.env.REACT_APP_MapBox_API_KEY);
 } else {
