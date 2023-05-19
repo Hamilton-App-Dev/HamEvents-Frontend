@@ -25,9 +25,9 @@
     "leven" "^3.1.0"
 
 "@auth0/auth0-react@^2.0.2":
-  "integrity" "sha512-MyN1FdB+Ogo9S3YWShfUq7eVsq37ioh885oThnwZ1OjYrKUlImM+dWwybDD+Bg8U28sYBt3QEqFbMAQC/p4ONQ=="
-  "resolved" "https://registry.npmjs.org/@auth0/auth0-react/-/auth0-react-2.0.2.tgz"
-  "version" "2.0.2"
+  "integrity" "sha512-+86qLx97BcSwL/ZwIzGq9jFa5SaV5z7goLU5gi+4R9KhzDg9vhmmZ+iQWW0GMiuwjJ8vcfX4hRTD6iF0DbGZWw=="
+  "resolved" "https://registry.npmjs.org/@auth0/auth0-react/-/auth0-react-2.1.0.tgz"
+  "version" "2.1.0"
   dependencies:
     "@auth0/auth0-spa-js" "^2.0.4"
 
@@ -2292,9 +2292,9 @@
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^18.0.38":
-  "integrity" "sha512-0FLj93y5USLHdnhIhABk83rm8XEGA7kH3cr+YUlvxoUGp1xNt/DINUMvqPxLyOQMzLmZe8i4RTHbvb8MC7NmrA=="
-  "resolved" "https://registry.npmjs.org/@types/react/-/react-18.2.0.tgz"
-  "version" "18.2.0"
+  "integrity" "sha512-ExsidLLSzYj4cvaQjGnQCk4HFfVT9+EZ9XZsQ8Hsrcn8QNgXtpZ3m9vSIC2MWtx7jHictK6wYhQgGh6ic58oOw=="
+  "resolved" "https://registry.npmjs.org/@types/react/-/react-18.0.38.tgz"
+  "version" "18.0.38"
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -7861,7 +7861,7 @@
     "kleur" "^3.0.3"
     "sisteransi" "^1.0.5"
 
-"prop-types@^15.6.2", "prop-types@^15.8.1":
+"prop-types@^15.5.10", "prop-types@^15.6.2", "prop-types@^15.8.1":
   "integrity" "sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg=="
   "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   "version" "15.8.1"
@@ -8019,6 +8019,13 @@
   "resolved" "https://registry.npmjs.org/react-refresh/-/react-refresh-0.11.0.tgz"
   "version" "0.11.0"
 
+"react-reveal@^1.2.2":
+  "integrity" "sha512-JCv3fAoU6Z+Lcd8U48bwzm4pMZ79qsedSXYwpwt6lJNtj/v5nKJYZZbw3yhaQPPgYePo3Y0NOCoYOq/jcsisuw=="
+  "resolved" "https://registry.npmjs.org/react-reveal/-/react-reveal-1.2.2.tgz"
+  "version" "1.2.2"
+  dependencies:
+    "prop-types" "^15.5.10"
+
 "react-router-dom@^5.0.1", "react-router-dom@^5.2.0":
   "integrity" "sha512-m4EqFMHv/Ih4kpcBCONHbkT68KoAeHN4p3lAGoNryfHi0dMy0kCzEZakiKRsvg5wHZ/JLrLW8o8KomWiz/qbYQ=="
   "resolved" "https://registry.npmjs.org/react-router-dom/-/react-router-dom-5.3.4.tgz"
@@ -8102,7 +8109,12 @@
   optionalDependencies:
     "fsevents" "^2.3.2"
 
-"react@^16.11.0 || ^17 || ^18", "react@^18.0.0", "react@^18.2.0", "react@>= 16", "react@>=15", "react@>=16.8.6":
+"react-scroll-to-top@^3.0.0":
+  "integrity" "sha512-I/k45Ujai097du59tHBbzGxN7Lyc6K8Uc3IChq6HMXaBfB8N/rrfm055T5Yv0DWfVpf6pOFaBmhD3LOfH5unGw=="
+  "resolved" "https://registry.npmjs.org/react-scroll-to-top/-/react-scroll-to-top-3.0.0.tgz"
+  "version" "3.0.0"
+
+"react@^15.3.0 || ^16.0.0", "react@^16.11.0 || ^17 || ^18", "react@^16.8.0 || 17.x || ^18", "react@^18.0.0", "react@^18.2.0", "react@>= 16", "react@>=15", "react@>=16.8.6":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   "version" "18.2.0"

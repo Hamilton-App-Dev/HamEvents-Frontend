@@ -1,3 +1,4 @@
+//Make the food text change colors
 import React, { useState, useEffect } from 'react';
 
 interface Props {

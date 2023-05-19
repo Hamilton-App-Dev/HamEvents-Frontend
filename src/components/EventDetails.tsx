@@ -1,14 +1,12 @@
 import React, { FC } from 'react';
-import { useState, useEffect } from 'react';
 import { 
-  IonCard, IonContent, IonSearchbar, IonHeader, IonCardSubtitle, 
-  IonButton, IonButtons, IonToolbar, IonTitle,
-  IonInfiniteScrollContent, IonInfiniteScroll, 
+  IonCard, IonContent, IonHeader, IonCardSubtitle, 
+  IonButton, IonToolbar, IonTitle,
   IonCardContent, IonCardHeader, IonCardTitle 
 } from '@ionic/react';
 import "./EventDetails.css";
 import FlashingColor from './FlashingColor';
-
+import transformTime from './TransformTime';
 interface Props {
 	data: {
 		id: string;
@@ -24,14 +22,13 @@ interface Props {
 }
 
 const Details: FC<Props> = ({ data }) => {
-    return (
-      
-      <IonContent className='container'>
-          <IonHeader>
-            <IonToolbar>
-                <IonTitle>Event Details</IonTitle>
-            </IonToolbar>
-          </IonHeader>
+  return (
+    <IonContent className='container'>
+      <IonHeader>
+        <IonToolbar>
+            <IonTitle>Event Details</IonTitle>
+        </IonToolbar>
+      </IonHeader>
       {data.map((item) => (
         <IonContent key={item.id}>
         <IonCard color="primary" className="mainCard">
@@ -39,7 +36,7 @@ const Details: FC<Props> = ({ data }) => {
             <IonCardTitle>{item.name}</IonCardTitle>
             <br></br>
             <IonCardSubtitle>
-              {item.event_time_start.toString()} - {item.event_time_end.toString()}
+              {transformTime(item).start} - {transformTime(item).end}
             </IonCardSubtitle>
             <br></br>
             <IonCardSubtitle>{item.location}</IonCardSubtitle>
@@ -71,24 +68,10 @@ const Details: FC<Props> = ({ data }) => {
             </IonCard>
         </IonCardContent>
         </IonCard>
-
         </IonContent>
       ))}
-      </IonContent>
-
-
-      
-      
-      // <div>
-      //     <h1>Event Details</h1>
-      //     {data.map((item) => (
-      //       <div key={item.id}>
-      //         <h2>{item.name}</h2>
-      //         <p>{item.description}</p>
-      //       </div>
-      //     ))}
-      //   </div></>
-    );
-  };
+    </IonContent>
+  );
+};
   
-  export default Details;
+export default Details;

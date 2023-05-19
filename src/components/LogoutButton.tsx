@@ -14,7 +14,7 @@ const LogoutButton: React.FC = () => {
             logoutParams: {
                 returnTo: logoutUrl,
             },
-            async openUrl(url) {
+            async openUrl(url: any) {
                 // Redirect using Capacitor's Browser plugin
                 await Browser.open({
                     url: logoutUrl,

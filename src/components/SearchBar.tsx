@@ -1,4 +1,6 @@
-import { useEffect, useState, Component, ReactNode } from 'react';
+//filter and render events
+//need a go back to top button
+import { useEffect, useState} from 'react';
 import { BrowserRouter as Router, Route, Link, useHistory } from "react-router-dom"
 import { 
   IonCard, IonContent, IonSearchbar, IonCardSubtitle, 
@@ -6,9 +8,9 @@ import {
   IonInfiniteScrollContent, IonInfiniteScroll, 
   IonCardContent, IonCardHeader, IonCardTitle 
 } from '@ionic/react';
-
+import ScrollToTop from "react-scroll-to-top";
 import "./SearchBar.css";
-
+import transformTime  from './TransformTime';
 type Card = {
   id: string;
   name: string;
@@ -32,18 +34,6 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
   // );
   const [cards, setCards] = useState(myArrayOfCards.slice(0, 5));
 
-  function transformTime(card: { event_time_start: { toString: () => string; }; event_time_end: { toString: () => string; }; }) {
-    var startTimeTrim, endTimeTrim, startTime, endTime;
-      startTimeTrim = card.event_time_start.toString().trim().split(/[ ,]+/);
-      endTimeTrim = card.event_time_end.toString().trim().split(/[ ,]+/);
-      startTime = startTimeTrim[0] + ", " + startTimeTrim.slice(1,3).toString().replace(/,/g, ' ') + ", " + startTimeTrim[4];
-      endTime = endTimeTrim[0] + ", " + endTimeTrim.slice(1,3).toString().replace(/,/g, ' ') + ", " + endTimeTrim[4];
-      if (endTimeTrim[0] === startTimeTrim[0]){
-           endTime = endTimeTrim[4];
-      }
-    return {"start": startTime, "end": endTime};
-  }
-  // slice(0, 10) returns the first 10 items from the array
   function loadMoreCards() {
     console.log("loadMoreCards");
     const filteredCards = myArrayOfCards.filter((card) =>
@@ -66,7 +56,8 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
   }, [searchTerm, myArrayOfCards]);
 
   return (
-      <IonContent>
+      <IonContent className="container">
+        <ScrollToTop smooth color="#6f00ff" />
         <IonSearchbar 
           placeholder='Search for an event...' 
           value={searchTerm} 
@@ -104,10 +95,10 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
           (ev)=>{
             loadMoreCards(); setTimeout(() => ev.target.complete(), 500);
           }}>
-        <IonInfiniteScrollContent loadingSpinner="bubbles">
-        </IonInfiniteScrollContent>
+          <IonInfiniteScrollContent loadingSpinner="bubbles"></IonInfiniteScrollContent>
         </IonInfiniteScroll>
-        </IonContent>
+
+      </IonContent>
   );
 };
 
