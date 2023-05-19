@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
-import '../../public/assets/key.json';
+
 interface MapProps {
   initialLocation: string;
 }

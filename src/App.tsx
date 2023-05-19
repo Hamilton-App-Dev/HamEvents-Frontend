@@ -26,7 +26,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 
 setupIonicReact();
-
+console.log(process.env.REACT_APP_MapBox_API_KEY);
 const App: React.FC = () => (
   //Had to nest Switch inside IonouterOutlet to fix the issue of the details page not being immediately 
   //rendered after clicking the button
