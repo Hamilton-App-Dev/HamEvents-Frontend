@@ -4,7 +4,13 @@ import mapboxgl from 'mapbox-gl';
 interface MapProps {
   initialLocation: string;
 }
-mapboxgl.accessToken = 'pk.eyJ1IjoiZ2dka3MiLCJhIjoiY2xhYnNpdzJyMDJ6dzQyb21nMjUzaGV5MiJ9.WBCbtLcZ96zudbiMRfidcA';
+
+if (process.env.REACT_APP_MapBox_API_KEY == undefined) {
+  console.log( process.env.REACT_APP_MapBox_API_KEY);
+} else {
+  const mapboxKY = process.env.REACT_APP_MapBox_API_KEY;
+  mapboxgl.accessToken =  mapboxKY.toString();
+}
 
 const Map: React.FC<MapProps> = ({ initialLocation }) => {
   const [location, setLocation] = useState(initialLocation);
