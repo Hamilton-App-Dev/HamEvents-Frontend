@@ -1,3 +1,49 @@
+import React, { useEffect, useState } from 'react';
+import mapboxgl from 'mapbox-gl';
+import '../../public/assets/key.json';
+interface MapProps {
+  initialLocation: string;
+}
+mapboxgl.accessToken = 'pk.eyJ1IjoiZ2dka3MiLCJhIjoiY2xhYnNpdzJyMDJ6dzQyb21nMjUzaGV5MiJ9.WBCbtLcZ96zudbiMRfidcA';
+
+const Map: React.FC<MapProps> = ({ initialLocation }) => {
+  const [location, setLocation] = useState(initialLocation);
+  useEffect(() => {
+    setLocation(initialLocation);
+    const handleMapRender = async () => {
+      try {
+        const map = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/mapbox/streets-v11',
+          center: [-75.408450, 43.051670], // Coordinates of the location to mark
+          zoom: 12
+        });
+
+        const marker = new mapboxgl.Marker({
+          color: "#black",
+          draggable: true
+          }).setLngLat([-75.408450, 43.051670])
+          .addTo(map);
+      } catch (error: any) {
+        console.error('Error:', error.message);
+      }
+    };
+
+    window.onload = handleMapRender;
+
+    return () => {
+      window.onload = null;
+    };
+  }, []);
+
+  return <div id="map" style={{ width: '100%', height: '200px' }}></div>;
+
+};
+
+export default Map;
+
+
+
 /* import React, { useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import geocoding  from '@mapbox/mapbox-sdk/services/geocoding';
@@ -68,46 +114,3 @@ const Map: React.FC<MapProps> = ({ initialLocation }) => {
   };
   
   export default Map; */
-
-import React, { useEffect, useState } from 'react';
-import mapboxgl from 'mapbox-gl';
-interface MapProps {
-  initialLocation: string;
-}
-mapboxgl.accessToken = 'pk.eyJ1IjoiZ2dka3MiLCJhIjoiY2xhYnNpdzJyMDJ6dzQyb21nMjUzaGV5MiJ9.WBCbtLcZ96zudbiMRfidcA';
-
-const Map: React.FC<MapProps> = ({ initialLocation }) => {
-  const [location, setLocation] = useState(initialLocation);
-  useEffect(() => {
-    setLocation(initialLocation);
-    const handleMapRender = async () => {
-      try {
-        const map = new mapboxgl.Map({
-          container: 'map',
-          style: 'mapbox://styles/mapbox/streets-v11',
-          center: [-75.408450, 43.051670], // Coordinates of the location to mark
-          zoom: 12
-        });
-
-        const marker = new mapboxgl.Marker({
-          color: "#black",
-          draggable: true
-          }).setLngLat([-75.408450, 43.051670])
-          .addTo(map);
-      } catch (error: any) {
-        console.error('Error:', error.message);
-      }
-    };
-
-    window.onload = handleMapRender;
-
-    return () => {
-      window.onload = null;
-    };
-  }, []);
-
-  return <div id="map" style={{ width: '100%', height: '200px' }}></div>;
-
-};
-
-export default Map;
