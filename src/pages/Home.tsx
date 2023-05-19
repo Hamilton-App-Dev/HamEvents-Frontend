@@ -5,7 +5,7 @@ import {
     IonTitle,
     IonToolbar,
 } from "@ionic/react";
-import { IonTabs, IonTabBar, IonTabButton, IonIcon } from "@ionic/react";
+// import { IonTabs, IonTabBar, IonTabButton, IonIcon } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 import FilteredCardList from "../components/SearchBar";
 import "./Home.css";
