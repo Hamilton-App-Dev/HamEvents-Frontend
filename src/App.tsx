@@ -1,11 +1,26 @@
 import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
+import {
+    IonApp,
+    IonTabs,
+    IonRouterOutlet,
+    setupIonicReact,
+    IonTabBar,
+    IonTabButton,
+    IonIcon,
+    IonLabel,
+} from "@ionic/react";
+
+import { useAuth0 } from "@auth0/auth0-react";
+
+import { home, person } from "ionicons/icons";
+
 import { IonReactRouter } from "@ionic/react-router";
 import Home from "./pages/Home";
 import User from "./pages/User";
 import Login from "./pages/Login";
 import SubPage from "./components/SubPage";
+
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
 
@@ -27,29 +42,66 @@ import "./theme/variables.css";
 
 setupIonicReact();
 
-const App: React.FC = () => (
+const App: React.FC = () => {
+    const { user, isAuthenticated, isLoading } = useAuth0();
+
+    console.log(user);
+    console.log("authenticated", isAuthenticated);
+
     //Had to nest Switch inside IonouterOutlet to fix the issue of the details page not being immediately
     //rendered after clicking the button
-    <IonApp>
-        <IonReactRouter>
-            <IonRouterOutlet>
-                <Switch>
-                    <Route exact path="/home">
-                        <Home />
-                    </Route>
-                    <Route exact path="/">
-                        <Login />
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
-                        {/* <Redirect to="/home" /> */}
+    return (
+        <IonApp>
+            <IonReactRouter>
+                <Switch>
+                    <Route path="/login">
+                        <Login />
                     </Route>
-                    <Route exact path="/profiles/:username">
-                        <User />
+                    <Route path="/">
+                        {isAuthenticated ? (
+                            <IonTabs>
+                                <IonRouterOutlet>
+                                    <Route exact path="/home">
+                                        <Home />
+                                    </Route>
+                                    <Route exact path="/profile">
+                                        <User />
+                                    </Route>
+                                    <Route
+                                        exact
+                                        path="/details/:id"
+                                        component={SubPage}
+                                    />
+                                    <Redirect exact from="/" to="/home" />
+                                </IonRouterOutlet>
+
+                                <IonTabBar slot="bottom">
+                                    <IonTabButton tab="home" href="/home">
+                                        <IonIcon icon={home} />
+                                        <IonLabel>Home</IonLabel>
+                                    </IonTabButton>
+
+                                    <IonTabButton
+                                        tab="profiles"
+                                        href="/profile"
+                                    >
+                                        <IonIcon icon={person} />
+                                        <IonLabel>Profile</IonLabel>
+                                    </IonTabButton>
+                                </IonTabBar>
+                            </IonTabs>
+                        ) : (
+                            <Redirect to="/login" />
+                        )}
                     </Route>
-                    <Route exact path="/details/:id" component={SubPage} />
                 </Switch>
-            </IonRouterOutlet>
-        </IonReactRouter>
-    </IonApp>
-);
+            </IonReactRouter>
+        </IonApp>
+    );
+};
 
 export default App;

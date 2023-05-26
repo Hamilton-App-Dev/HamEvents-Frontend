@@ -1,24 +1,31 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { Browser } from "@capacitor/browser";
 import { IonButton } from "@ionic/react";
 import "./LoginButton.css";
+// import { useEffect, ReactNode } from "react";
+// import { Browser } from "@capacitor/browser";
+// import { useHistory } from "react-router-dom";
 
-const LoginButton: React.FC = () => {
+interface LoginButtonProps {
+    children?: string;
+}
+
+const LoginButton = ({ children }: LoginButtonProps) => {
     const { loginWithRedirect } = useAuth0();
-    const currentUrl = window.location.href;
+    // const history = useHistory(); // Get the history object
 
-    const login = async () => {
-        await loginWithRedirect({
-            async openUrl(url) {
-                console.log(url);
-                // Redirect using Capacitor's Browser plugin
-                await Browser.open({
-                    url: `${currentUrl}home`,
-                    windowName: "_self",
-                });
-            },
-        });
+    const doLogin = async () => {
+        await loginWithRedirect();
     };
+
+    // useEffect(() => {
+    //     const handleAuth = () => {
+    //         if (window.location.search.includes("code=")) {
+    //             history.push("/");
+    //         }
+    //     };
+
+    //     handleAuth();
+    // }, [history]);
 
     return (
         <IonButton
@@ -26,9 +33,9 @@ const LoginButton: React.FC = () => {
             shape="round"
             fill="outline"
             expand="block"
-            onClick={login}
+            onClick={doLogin}
         >
-            Log in
+            {children}
         </IonButton>
     );
 };

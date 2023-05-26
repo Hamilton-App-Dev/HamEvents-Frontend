@@ -13,7 +13,7 @@ const Login = () => {
                         Log in or create an account to access Events.
                     </p>
                     <div>
-                        <LoginButton />
+                        <LoginButton>Log In</LoginButton>
                         <p className="help-button">Need Help?</p>
                     </div>
                 </div>
