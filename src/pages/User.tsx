@@ -9,6 +9,7 @@ import {
 } from "@ionic/react";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./User.css";
+import { mail } from "ionicons/icons";
 import { useParams } from "react-router-dom";
 import LogoutButton from "../components/LogoutButton";
 
@@ -29,9 +30,10 @@ const UserProfile: React.FC = () => {
                     </IonAvatar>
                     <IonLabel className="profile-name">{user.name}</IonLabel>
                     <IonItem lines="none">
-                        <IonIcon name="mail-outline" slot="start"></IonIcon>
+                        <IonIcon icon={mail} slot="start"></IonIcon>
                         <IonLabel>{user.email}</IonLabel>
                     </IonItem>
+
                     <LogoutButton> Log out</LogoutButton>
                 </div>
             </IonContent>

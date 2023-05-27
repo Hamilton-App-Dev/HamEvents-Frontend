@@ -12,11 +12,14 @@ import FilteredCardList from "../components/SearchBar";
 import "./Home.css";
 
 const Home: React.FC = () => {
+    console.log("asdda");
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
+    const serverUrl = process.env.REACT_APP_API_URL + "events/" ?? "";
+    console.log("url", serverUrl);
     useEffect(() => {
-        fetch(`http://18.215.146.215/events/`)
+        fetch(serverUrl)
             .then((response) => response.json())
             .then((actualData) => {
                 console.log(actualData);
