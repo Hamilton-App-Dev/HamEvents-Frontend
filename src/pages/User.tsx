@@ -6,6 +6,9 @@ import {
     IonLabel,
     IonItem,
     IonIcon,
+    IonTitle,
+    IonToolbar,
+    IonHeader,
 } from "@ionic/react";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./User.css";
@@ -23,6 +26,12 @@ const UserProfile: React.FC = () => {
 
     return (
         <IonPage>
+            <IonHeader>
+                <IonToolbar>
+                    <IonTitle>My Profile</IonTitle>
+                </IonToolbar>
+            </IonHeader>
+
             <IonContent fullscreen>
                 <div className="profile-container">
                     <IonAvatar>
