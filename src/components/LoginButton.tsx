@@ -1,6 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { IonButton } from "@ionic/react";
 import "./LoginButton.css";
+import detectDarkMode from "../utils/detectDarkMode";
 // import { useEffect, ReactNode } from "react";
 // import { Browser } from "@capacitor/browser";
 // import { useHistory } from "react-router-dom";
@@ -17,6 +18,14 @@ const LoginButton = ({ children }: LoginButtonProps) => {
         await loginWithRedirect();
     };
 
+    const darkmode = detectDarkMode()
+    let styleString = "button-style";
+   
+    if (!darkmode) {
+        styleString += " light"
+        console.log(styleString)
+    }
+
     // useEffect(() => {
     //     const handleAuth = () => {
     //         if (window.location.search.includes("code=")) {
@@ -29,7 +38,7 @@ const LoginButton = ({ children }: LoginButtonProps) => {
 
     return (
         <IonButton
-            className="button-style"
+            className={styleString}
             shape="round"
             fill="outline"
             expand="block"
