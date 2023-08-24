@@ -1,9 +1,9 @@
 const detectDarkMode = ():boolean => {
     if (window.matchMedia) {
-        const query = window.matchMedia('prefers-color-scheme: dark');
-        return !query || !!query?.matches; // true or false
+        const query = window.matchMedia("(prefers-color-scheme: dark)");
+        return query.matches;
     }
-    return false;
+    return true;
 }
 
 export default detectDarkMode;
