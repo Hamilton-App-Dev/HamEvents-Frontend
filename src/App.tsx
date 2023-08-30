@@ -62,41 +62,38 @@ const App: React.FC = () => {
                         <Login />
                     </Route>
                     <Route path="/">
-                        {isAuthenticated ? (
-                            <IonTabs>
-                                <IonRouterOutlet>
-                                    <Route exact path="/home">
-                                        <Home />
-                                    </Route>
-                                    <Route exact path="/profile">
-                                        <User />
-                                    </Route>
-                                    <Route
-                                        exact
-                                        path="/details/:id"
-                                        component={SubPage}
-                                    />
-                                    <Redirect exact from="/" to="/home" />
-                                </IonRouterOutlet>
+                        <IonTabs>
+                            <IonRouterOutlet>
+                                <Route exact path="/home">
+                                    <Home />
+                                </Route>
+                                <Route exact path="/profile">
+                                    <User />
+                                </Route>
+                                <Route
+                                    exact
+                                    path="/details/:id"
+                                    component={SubPage}
+                                />
+                                <Redirect exact from="/" to="/home" />
+                            </IonRouterOutlet>
 
-                                <IonTabBar slot="bottom">
-                                    <IonTabButton tab="home" href="/home">
-                                        <IonIcon icon={home} />
-                                        <IonLabel>Home</IonLabel>
-                                    </IonTabButton>
+                            <IonTabBar slot="bottom">
+                                <IonTabButton tab="home" href="/home">
+                                    <IonIcon icon={home} />
+                                    <IonLabel>Home</IonLabel>
+                                </IonTabButton>
 
-                                    <IonTabButton
-                                        tab="profiles"
-                                        href="/profile"
-                                    >
-                                        <IonIcon icon={person} />
-                                        <IonLabel>Profile</IonLabel>
-                                    </IonTabButton>
-                                </IonTabBar>
-                            </IonTabs>
-                        ) : (
-                            <Redirect to="/login" />
-                        )}
+                                <IonTabButton
+                                    tab="profiles"
+                                    href="/profile"
+                                >
+                                    <IonIcon icon={person} />
+                                    <IonLabel>Profile</IonLabel>
+                                </IonTabButton>
+                            </IonTabBar>
+                        </IonTabs>
+
                     </Route>
                 </Switch>
             </IonReactRouter>
