@@ -8,7 +8,6 @@ import {
 import "./EventDetails.css";
 import FlashingColor from './FlashingColor';
 import transformTime from './TransformTime';
-import Map from './MapBox';
 
 interface Props {
 	data: {
@@ -89,9 +88,6 @@ const Details: FC<Props> = ({ data }) => {
           <IonCardHeader>
             <IonCardTitle>Map:</IonCardTitle>
           </IonCardHeader>
-          <IonCardContent>
-             <Map initialLocation=''></Map>
-          </IonCardContent>
         </IonCard>
         </IonContent>
       ))}

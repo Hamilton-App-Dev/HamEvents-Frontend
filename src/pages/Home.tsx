@@ -1,3 +1,4 @@
+//need new backend fetch url
 import {
     IonContent,
     IonHeader,
@@ -15,7 +16,7 @@ const Home: React.FC = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch(`http://18.215.146.215/events/`)
+    fetch(`https://events-backend-hquq.onrender.com/events`)
       .then((response) => response.json())
       .then((actualData) => {
         console.log(actualData);
