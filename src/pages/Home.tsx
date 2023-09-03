@@ -1,4 +1,3 @@
-//need new backend fetch url
 import {
     IonContent,
     IonHeader,

@@ -37,8 +37,9 @@ const App: React.FC = () => (
           <Route exact path="/home">
             <Home />
           </Route>
-          {/* <Route exact path="/">
-            <Redirect to="/home" /> */}
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
           {/* </Route>
           <Route exact path="/details/:id" component={SubPage}/> */}
         </Switch>

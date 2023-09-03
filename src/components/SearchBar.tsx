@@ -9,6 +9,9 @@ import {
   IonCardContent, IonCardHeader, IonCardTitle 
 } from '@ionic/react';
 import ScrollToTop from "react-scroll-to-top";
+import { IonIcon } from '@ionic/react';
+import { logoIonic } from 'ionicons/icons';
+import { flame } from 'ionicons/icons';
 import "./SearchBar.css";
 import transformTime  from './TransformTime';
 type Card = {
@@ -68,7 +71,10 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
         {cards.map((card) => (
           <IonCard key={card.id}>
             <IonCardHeader className="header">
-                <IonCardTitle className='cardName'>{card.name}</IonCardTitle>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <IonCardTitle className='cardName'>{card.name}</IonCardTitle>
+              <IonIcon icon={flame} size="large" color="danger" />
+            </div>  
                 <IonCardSubtitle>{card.location}</IonCardSubtitle>
                 <IonCardSubtitle>
                   {transformTime(card).start} - {transformTime(card).end}
