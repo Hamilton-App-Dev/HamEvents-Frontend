@@ -80,12 +80,12 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
             </IonCardContent>
             <IonToolbar className="btnGroup">
               <IonButtons slot="start">
-                  <IonButton 
+                  {/* <IonButton 
                     onClick={()=>handleDetails(card.id)} 
                     className="btn" 
                     color="primary">
                       More
-                  </IonButton>
+                  </IonButton> */}
               </IonButtons>
               <IonButtons slot="end">
                   <IonButton className="btn" color="primary">Attending</IonButton>

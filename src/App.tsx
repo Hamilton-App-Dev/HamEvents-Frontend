@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
-import SubPage from './components/SubPage';
+//import SubPage from './components/SubPage';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -37,10 +37,10 @@ const App: React.FC = () => (
           <Route exact path="/home">
             <Home />
           </Route>
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-          <Route exact path="/details/:id" component={SubPage}/>
+          {/* <Route exact path="/">
+            <Redirect to="/home" /> */}
+          {/* </Route>
+          <Route exact path="/details/:id" component={SubPage}/> */}
         </Switch>
       </IonRouterOutlet>
     </IonReactRouter>
