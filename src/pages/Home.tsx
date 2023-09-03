@@ -10,6 +10,7 @@ import { IonTabs, IonTabBar, IonTabButton, IonIcon } from '@ionic/react';
 import React, { useEffect, useState } from "react";
 import FilteredCardList from "../components/SearchBar";
 import "./Home.css";
+import ProfileDropdown from "../components/ProfileDropdown";
 
 const Home: React.FC = () => {
   const [data, setData] = useState(null);
@@ -35,9 +36,13 @@ const Home: React.FC = () => {
       <IonPage>
           <IonHeader>
               <IonToolbar>
-                  <IonTitle>Events Listing Page</IonTitle>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <IonTitle>Your Updates</IonTitle>
+                    <ProfileDropdown></ProfileDropdown>
+                  </div>
               </IonToolbar>
           </IonHeader>
+
           <IonContent fullscreen>
             {loading && <h1>Loading...One moment please</h1>}
             {error && (
