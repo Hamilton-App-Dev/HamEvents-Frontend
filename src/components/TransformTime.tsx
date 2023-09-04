@@ -4,7 +4,6 @@ const options: Intl.DateTimeFormatOptions = {
 	month: "numeric",
 	hour: "numeric",
 	minute: "numeric",
-	second: "numeric",
 	hour12: true,
 };
 
@@ -19,6 +18,8 @@ function transformTime(card: { event_time_start: Date; event_time_end: Date }) {
 		date
 	);
 
-	return { start: formattedStartTime, end: formattedEndTime };
+	var endTime = formattedEndTime.split(",")[2];
+
+	return { start: formattedStartTime, end: endTime };
 }
 export default transformTime;
