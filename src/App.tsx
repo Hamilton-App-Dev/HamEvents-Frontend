@@ -19,7 +19,6 @@ import { IonReactRouter } from "@ionic/react-router";
 import Home from "./pages/Home";
 import User from "./pages/User";
 import Login from "./pages/Login";
-import SubPage from "./components/SubPage";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -45,9 +44,6 @@ setupIonicReact();
 const App: React.FC = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
 
-    console.log(user);
-    console.log("authenticated", isAuthenticated);
-
     //Had to nest Switch inside IonouterOutlet to fix the issue of the details page not being immediately
     //rendered after clicking the button
     if (isLoading) {
@@ -71,11 +67,6 @@ const App: React.FC = () => {
                                 <Route exact path="/profile">
                                     <User />
                                 </Route>
-                                <Route
-                                    exact
-                                    path="/details/:id"
-                                    component={SubPage}
-                                />
                                 <Redirect exact from="/" to="/home" />
                             </IonRouterOutlet>
 

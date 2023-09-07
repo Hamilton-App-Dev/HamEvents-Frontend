@@ -5,21 +5,18 @@ import {
     IonTitle,
     IonToolbar,
 } from "@ionic/react";
-// import { IonTabs, IonTabBar, IonTabButton, IonIcon } from "@ionic/react";
-
+import { IonTabs, IonTabBar, IonTabButton, IonIcon } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 import FilteredCardList from "../components/SearchBar";
 import "./Home.css";
+import ProfileDropdown from "../components/ProfileDropdown";
 
 const Home: React.FC = () => {
-    console.log("asdda");
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
-    const serverUrl = process.env.REACT_APP_API_URL + "events/" ?? "";
-    console.log("url", serverUrl);
     useEffect(() => {
-        fetch(serverUrl)
+        fetch(`https://events-backend-hquq.onrender.com/events`)
             .then((response) => response.json())
             .then((actualData) => {
                 console.log(actualData);
@@ -34,13 +31,18 @@ const Home: React.FC = () => {
                 setLoading(false);
             });
     }, []);
+
     return (
         <IonPage>
             <IonHeader>
                 <IonToolbar>
-                    <IonTitle>Events Listing</IonTitle>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                        <IonTitle>Your Updates</IonTitle>
+                        <ProfileDropdown></ProfileDropdown>
+                    </div>
                 </IonToolbar>
             </IonHeader>
+
             <IonContent fullscreen>
                 {loading && <h1>Loading...One moment please</h1>}
                 {error && (

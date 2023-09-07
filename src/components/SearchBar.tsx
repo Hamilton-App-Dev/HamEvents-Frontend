@@ -22,6 +22,9 @@ import {
     IonCardTitle,
 } from "@ionic/react";
 import ScrollToTop from "react-scroll-to-top";
+import { IonIcon } from "@ionic/react";
+import { logoIonic } from "ionicons/icons";
+import { flame } from "ionicons/icons";
 import "./SearchBar.css";
 import transformTime from "./TransformTime";
 type Card = {
@@ -59,6 +62,7 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
     const history = useHistory();
     const handleDetails = (id: string) => {
         history.push(`/details/${id}`, { data: myArrayOfCards });
+        window.location.href = `/details/${id}`;
     };
 
     useEffect(() => {
@@ -79,9 +83,18 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
             {cards.map((card) => (
                 <IonCard key={card.id}>
                     <IonCardHeader className="header">
-                        <IonCardTitle className="cardName">
-                            {card.name}
-                        </IonCardTitle>
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                            }}
+                        >
+                            <IonCardTitle className="cardName">
+                                {card.name}
+                            </IonCardTitle>
+                            <IonIcon icon={flame} size="large" color="danger" />
+                        </div>
                         <IonCardSubtitle>{card.location}</IonCardSubtitle>
                         <IonCardSubtitle>
                             {transformTime(card).start} -{" "}
@@ -92,13 +105,12 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
                     <IonCardContent>{card.description}</IonCardContent>
                     <IonToolbar className="btnGroup">
                         <IonButtons slot="start">
-                            <IonButton
-                                onClick={() => handleDetails(card.id)}
-                                className="btn"
-                                color="primary"
-                            >
-                                More
-                            </IonButton>
+                            {/* <IonButton 
+                    onClick={()=>handleDetails(card.id)} 
+                    className="btn" 
+                    color="primary">
+                      More
+                  </IonButton> */}
                         </IonButtons>
                         <IonButtons slot="end">
                             <IonButton className="btn" color="primary">
