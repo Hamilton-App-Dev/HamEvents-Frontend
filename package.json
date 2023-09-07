@@ -3,8 +3,10 @@
 	"version": "0.0.1",
 	"private": true,
 	"dependencies": {
+		"@auth0/auth0-react": "^2.0.1",
 		"@capacitor/android": "4.7.0",
-		"@capacitor/app": "4.1.1",
+		"@capacitor/app": "^4.1.1",
+		"@capacitor/browser": "^4.1.1",
 		"@capacitor/core": "4.7.0",
 		"@capacitor/haptics": "4.1.0",
 		"@capacitor/ios": "4.7.0",
@@ -12,32 +14,29 @@
 		"@capacitor/status-bar": "4.1.1",
 		"@ionic/react": "^6.0.0",
 		"@ionic/react-router": "^6.0.0",
-		"@mapbox/mapbox-sdk": "^0.15.1",
-		"@react-google-maps/api": "^2.18.1",
 		"@testing-library/jest-dom": "^5.11.9",
 		"@testing-library/react": "^13.3.0",
 		"@testing-library/user-event": "^12.6.3",
 		"@types/jest": "^26.0.20",
 		"@types/node": "^12.19.15",
+		"@types/react": "^18.0.17",
+		"@types/react-dom": "^18.0.6",
 		"@types/react-router": "^5.1.11",
-		"axios": "^1.4.0",
-		"bingmaps-react": "^1.2.10",
+		"@types/react-router-dom": "^5.1.7",
+		"dotenv": "^16.0.3",
 		"history": "^4.9.0",
-		"ionicons": "^6.1.3",
-		"mapbox-gl": "^2.14.1",
+		"ionicons": "^6.0.3",
 		"react": "^18.2.0",
-		"react-bingmaps": "^3.6.1",
 		"react-dom": "^18.2.0",
-		"react-reveal": "^1.2.2",
 		"react-router": "^5.2.0",
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "^5.0.0",
-		"react-scroll-to-top": "^3.0.0",
 		"typescript": "^4.1.3",
 		"web-vitals": "^0.2.4",
 		"workbox-background-sync": "^5.1.4",
 		"workbox-broadcast-update": "^5.1.4",
 		"workbox-cacheable-response": "^5.1.4",
+		"react-scroll-to-top": "^3.0.0",
 		"workbox-core": "^5.1.4",
 		"workbox-expiration": "^5.1.4",
 		"workbox-google-analytics": "^5.1.4",
@@ -51,9 +50,10 @@
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
-		"test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
 		"eject": "react-scripts eject",
+		"test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
 		"preinstall": "npm install --package-lock-only --ignore-scripts && npx npm-force-resolutions"
+
 	},
 	"eslintConfig": {
 		"extends": [
@@ -78,14 +78,9 @@
 	},
 	"devDependencies": {
 		"@capacitor/cli": "4.7.0",
-		"@types/mapbox__mapbox-sdk": "^0.13.4",
-		"@types/mapbox-gl": "^2.7.11",
 		"@types/react": "^18.0.38",
 		"@types/react-dom": "^18.0.11",
 		"@types/react-router-dom": "^5.3.3"
-	},
-	"resolutions": {
-		"@types/react": "^17.0.38"
 	},
 	"description": "An Ionic project"
 }
