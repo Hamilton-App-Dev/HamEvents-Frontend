@@ -18,7 +18,6 @@ import { home, person } from "ionicons/icons";
 import { IonReactRouter } from "@ionic/react-router";
 import Home from "./pages/Home";
 import User from "./pages/User";
-import Login from "./pages/Login";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -42,46 +41,27 @@ import "./theme/variables.css";
 setupIonicReact();
 
 const App: React.FC = () => {
-    const { user, isAuthenticated, isLoading } = useAuth0();
+    const { isLoading } = useAuth0();
 
     //Had to nest Switch inside IonouterOutlet to fix the issue of the details page not being immediately
     //rendered after clicking the button
     if (isLoading) {
         return <div>Loading...</div>;
     }
-
     return (
         <IonApp>
             <IonReactRouter>
                 <Switch>
-                    <Route path="/login">
-                        <Login />
-                    </Route>
                     <Route path="/">
-                        {/* {( */}
-                        <IonTabs>
-                            <IonRouterOutlet>
-                                <Route exact path="/home">
-                                    <Home />
-                                </Route>
-                                <Route exact path="/profile">
-                                    <User />
-                                </Route>
-                                <Redirect exact from="/" to="/home" />
-                            </IonRouterOutlet>
-
-                            <IonTabBar slot="bottom">
-                                <IonTabButton tab="home" href="/home">
-                                    <IonIcon icon={home} />
-                                    <IonLabel>Home</IonLabel>
-                                </IonTabButton>
-
-                                <IonTabButton tab="profiles" href="/profile">
-                                    <IonIcon icon={person} />
-                                    <IonLabel>Profile</IonLabel>
-                                </IonTabButton>
-                            </IonTabBar>
-                        </IonTabs>
+                        <IonRouterOutlet>
+                            <Route exact path="/home">
+                                <Home />
+                            </Route>
+                            <Route exact path="/profile">
+                                <User />
+                            </Route>
+                            <Redirect exact from="/" to="/home" />
+                        </IonRouterOutlet>
                     </Route>
                 </Switch>
             </IonReactRouter>
