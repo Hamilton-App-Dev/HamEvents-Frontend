@@ -13,17 +13,16 @@ interface LoginButtonProps {
 const LoginButton = ({ children }: LoginButtonProps) => {
     const { loginWithRedirect } = useAuth0();
     // const history = useHistory(); // Get the history object
-
     const doLogin = async () => {
         await loginWithRedirect();
     };
 
-    const darkmode = detectDarkMode()
+    const darkmode = detectDarkMode();
     let styleString = "button-style";
-   
+
     if (!darkmode) {
-        styleString += " light"
-        console.log(styleString)
+        styleString += " light";
+        console.log(styleString);
     }
 
     // useEffect(() => {

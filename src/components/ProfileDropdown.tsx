@@ -8,6 +8,8 @@ import {
     IonLabel,
 } from "@ionic/react";
 import { IonAvatar, IonChip } from "@ionic/react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Browser } from "@capacitor/browser";
 
 const ProfileDropdown: React.FC = () => {
     const [showPopover, setShowPopover] = useState(false);
@@ -15,6 +17,19 @@ const ProfileDropdown: React.FC = () => {
     const togglePopover = (event: React.MouseEvent) => {
         event.persist();
         setShowPopover((prevShowPopover) => !prevShowPopover);
+    };
+    const { loginWithRedirect } = useAuth0();
+
+    const login = async () => {
+        await loginWithRedirect({
+            async openUrl(url) {
+                // Redirect using Capacitor's Browser plugin
+                await Browser.open({
+                    url,
+                    windowName: "_self",
+                });
+            },
+        });
     };
 
     return (
@@ -36,7 +51,7 @@ const ProfileDropdown: React.FC = () => {
                 onDidDismiss={() => setShowPopover(false)}
             >
                 <IonList>
-                    <IonItem button onClick={() => console.log("Edit Profile")}>
+                    <IonItem button onClick={login}>
                         <IonLabel>Edit Profile</IonLabel>
                     </IonItem>
                     <IonItem button onClick={() => console.log("Logout")}>
