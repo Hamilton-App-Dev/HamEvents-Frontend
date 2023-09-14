@@ -3,9 +3,10 @@
 import {
 	IonRefresher,
 	IonRefresherContent,
-	RefresherEventDetail
+	RefresherEventDetail,
 } from "@ionic/react";
 
+import { Capacitor } from "@capacitor/core";
 import { useEffect, useState } from "react";
 import {
 	BrowserRouter as Router,
@@ -53,6 +54,7 @@ type Props = {
 const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [cards, setCards] = useState(myArrayOfCards.slice(0, 5));
+	const isWeb = Capacitor.getPlatform() === "web";
 
 	function handleRefresh(event: CustomEvent<RefresherEventDetail>) {
 		fetchData();
@@ -83,9 +85,11 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 
 	return (
 		<IonContent className="container">
-			<IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
-				<IonRefresherContent />
-			</IonRefresher>
+			{!isWeb && (
+				<IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
+					<IonRefresherContent />
+				</IonRefresher>
+			)}
 
 			<ScrollToTop smooth color="#6f00ff" />
 			<IonSearchbar
@@ -103,17 +107,12 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 								alignItems: "center",
 							}}
 						>
-							<IonCardTitle className="cardName">
-								{card.name}
-							</IonCardTitle>
+							<IonCardTitle className="cardName">{card.name}</IonCardTitle>
 							<IonIcon icon={flame} size="large" color="danger" />
 						</div>
+						<IonCardSubtitle>{card.location.split(",")[0]}</IonCardSubtitle>
 						<IonCardSubtitle>
-							{card.location.split(",")[0]}
-						</IonCardSubtitle>
-						<IonCardSubtitle>
-							{transformTime(card).start} -{" "}
-							{transformTime(card).end}
+							{transformTime(card).start} - {transformTime(card).end}
 						</IonCardSubtitle>
 					</IonCardHeader>
 
