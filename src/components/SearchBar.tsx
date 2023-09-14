@@ -1,5 +1,11 @@
 //filter and render events
 //need a go back to top button
+import {
+	IonRefresher,
+	IonRefresherContent,
+	RefresherEventDetail
+} from "@ionic/react";
+
 import { useEffect, useState } from "react";
 import {
 	BrowserRouter as Router,
@@ -41,11 +47,17 @@ type Card = {
 
 type Props = {
 	myArrayOfCards: Card[];
+	fetchData: () => void;
 };
 
-const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
+const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [cards, setCards] = useState(myArrayOfCards.slice(0, 5));
+
+	function handleRefresh(event: CustomEvent<RefresherEventDetail>) {
+		fetchData();
+		event.detail.complete();
+	}
 
 	function loadMoreCards() {
 		console.log("loadMoreCards");
@@ -71,6 +83,10 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
 
 	return (
 		<IonContent className="container">
+			<IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
+				<IonRefresherContent />
+			</IonRefresher>
+
 			<ScrollToTop smooth color="#6f00ff" />
 			<IonSearchbar
 				placeholder="Search for an event..."
