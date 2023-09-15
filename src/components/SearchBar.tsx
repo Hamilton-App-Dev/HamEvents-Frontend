@@ -1,5 +1,12 @@
 //filter and render events
 //need a go back to top button
+import {
+	IonRefresher,
+	IonRefresherContent,
+	RefresherEventDetail,
+} from "@ionic/react";
+
+import { Capacitor } from "@capacitor/core";
 import { useEffect, useState } from "react";
 import {
 	BrowserRouter as Router,
@@ -41,11 +48,18 @@ type Card = {
 
 type Props = {
 	myArrayOfCards: Card[];
+	fetchData: () => void;
 };
 
-const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
+const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [cards, setCards] = useState(myArrayOfCards.slice(0, 5));
+	const isWeb = Capacitor.getPlatform() === "web";
+
+	function handleRefresh(event: CustomEvent<RefresherEventDetail>) {
+		fetchData();
+		event.detail.complete();
+	}
 
 	function loadMoreCards() {
 		console.log("loadMoreCards");
@@ -71,6 +85,12 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
 
 	return (
 		<IonContent className="container">
+			{!isWeb && (
+				<IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
+					<IonRefresherContent />
+				</IonRefresher>
+			)}
+
 			<ScrollToTop smooth color="#6f00ff" />
 			<IonSearchbar
 				placeholder="Search for an event..."
@@ -87,17 +107,12 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards }) => {
 								alignItems: "center",
 							}}
 						>
-							<IonCardTitle className="cardName">
-								{card.name}
-							</IonCardTitle>
+							<IonCardTitle className="cardName">{card.name}</IonCardTitle>
 							<IonIcon icon={flame} size="large" color="danger" />
 						</div>
+						<IonCardSubtitle>{card.location.split(",")[0]}</IonCardSubtitle>
 						<IonCardSubtitle>
-							{card.location.split(",")[0]}
-						</IonCardSubtitle>
-						<IonCardSubtitle>
-							{transformTime(card).start} -{" "}
-							{transformTime(card).end}
+							{transformTime(card).start} - {transformTime(card).end}
 						</IonCardSubtitle>
 					</IonCardHeader>
 
