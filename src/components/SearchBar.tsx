@@ -38,6 +38,7 @@ type Card = {
 	id: string;
 	name: string;
 	description: string;
+	organization: string;
 	cover_img: string;
 	event_time_start: Date;
 	event_time_end: Date;
@@ -107,12 +108,20 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 								alignItems: "center",
 							}}
 						>
-							<IonCardTitle className="cardName">{card.name}</IonCardTitle>
+							<IonCardTitle className="cardName">
+								{card.name}
+							</IonCardTitle>
 							<IonIcon icon={flame} size="large" color="danger" />
 						</div>
-						<IonCardSubtitle>{card.location.split(",")[0]}</IonCardSubtitle>
+						<IonCardSubtitle style={{ fontWeight: "bold" }}>
+							{card.organization}
+						</IonCardSubtitle>
 						<IonCardSubtitle>
-							{transformTime(card).start} - {transformTime(card).end}
+							{card.location.split(",")[0]}
+						</IonCardSubtitle>
+						<IonCardSubtitle>
+							{transformTime(card).start} -{" "}
+							{transformTime(card).end}
 						</IonCardSubtitle>
 					</IonCardHeader>
 
