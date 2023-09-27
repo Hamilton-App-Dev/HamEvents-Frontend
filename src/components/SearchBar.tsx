@@ -30,7 +30,7 @@ import {
 } from "@ionic/react";
 import ScrollToTop from "react-scroll-to-top";
 import { IonIcon } from "@ionic/react";
-import { logoIonic } from "ionicons/icons";
+import { fastFood, logoIonic } from "ionicons/icons";
 import { flame } from "ionicons/icons";
 import "./SearchBar.css";
 import transformTime from "./TransformTime";
@@ -111,7 +111,21 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 							<IonCardTitle className="cardName">
 								{card.name}
 							</IonCardTitle>
-							<IonIcon icon={flame} size="large" color="danger" />
+							{/* <IonIcon icon={fast-food-outline}/> */}
+							<div>
+								{card.food && (
+									<IonIcon
+										icon={fastFood}
+										size="large"
+										color="warning"
+									/>
+								)}
+								<IonIcon
+									icon={flame}
+									size="large"
+									color="danger"
+								/>
+							</div>
 						</div>
 						<IonCardSubtitle style={{ fontWeight: "bold" }}>
 							{card.organization}
