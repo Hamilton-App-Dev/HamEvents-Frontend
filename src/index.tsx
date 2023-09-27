@@ -6,12 +6,18 @@ import { Capacitor } from "@capacitor/core";
 const container = document.getElementById("root");
 const root = createRoot(container!);
 
-// const platform = Capacitor.getPlatform();
+const platform = Capacitor.getPlatform();
 
 const auth0Domain =
     process.env.REACT_APP_AUTH0_DOMAIN ?? "domain env var not found";
-const auth0ClientId = process.env.REACT_APP_AUTH0_CLIENT_ID ?? "default";
-const auth0CallbackUrl = process.env.REACT_APP_AUTH0_CALLBACK_URL ?? "default";
+let auth0ClientId = process.env.REACT_APP_AUTH0_MOBILE_CLIENT_ID ?? "default";
+let auth0CallbackUrl =
+    process.env.REACT_APP_AUTH0_MOBILE_CALLBACK_URL ?? "default";
+
+if (platform === "web") {
+    auth0ClientId = process.env.REACT_APP_AUTH0_WEB_CLIENT_ID ?? "default";
+    auth0CallbackUrl = window.location.origin;
+}
 
 root.render(
     <Auth0Provider

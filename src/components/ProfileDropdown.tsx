@@ -9,8 +9,7 @@ import {
 } from "@ionic/react";
 import { IonAvatar, IonChip } from "@ionic/react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Browser } from "@capacitor/browser";
-import { useAuth0WithCapacitor } from "../hooks/useAuthWithCapacitor";
+import { useAuth0WithCapacitor } from "../hooks/useAuth0WithCapacitor";
 
 const ProfileDropdown: React.FC = () => {
     const [showPopover, setShowPopover] = useState(false);
@@ -20,7 +19,7 @@ const ProfileDropdown: React.FC = () => {
         setShowPopover((prevShowPopover) => !prevShowPopover);
     };
 
-    const { doLogout, doLogin } = useAuth0WithCapacitor();
+    const { isAuthenticated, doLogout, doLogin } = useAuth0WithCapacitor();
 
     return (
         <>
@@ -41,12 +40,27 @@ const ProfileDropdown: React.FC = () => {
                 onDidDismiss={() => setShowPopover(false)}
             >
                 <IonList>
-                    <IonItem button onClick={doLogin}>
-                        <IonLabel>Login</IonLabel>
-                    </IonItem>
-                    <IonItem button onClick={doLogout}>
-                        <IonLabel>Logout</IonLabel>
-                    </IonItem>
+                    {isAuthenticated ? (
+                        <IonItem
+                            button
+                            onClick={() => {
+                                doLogout();
+                                setShowPopover(false);
+                            }}
+                        >
+                            <IonLabel>Logout</IonLabel>
+                        </IonItem>
+                    ) : (
+                        <IonItem
+                            button
+                            onClick={() => {
+                                doLogin();
+                                setShowPopover(false);
+                            }}
+                        >
+                            <IonLabel>Login</IonLabel>
+                        </IonItem>
+                    )}
                 </IonList>
             </IonPopover>
         </>
