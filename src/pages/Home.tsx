@@ -15,7 +15,8 @@ const Home: React.FC = () => {
 	const [data, setData] = useState(null);
 	const [error, setError] = useState(null);
 	const [loading, setLoading] = useState(true);
-	useEffect(() => {
+
+	const fetchData = () => {
 		fetch(`https://events-backend-hquq.onrender.com/events`)
 			.then((response) => response.json())
 			.then((actualData) => {
@@ -30,6 +31,10 @@ const Home: React.FC = () => {
 			.finally(() => {
 				setLoading(false);
 			});
+	};
+
+	useEffect(() => {
+		fetchData();
 	}, []);
 
 	return (
@@ -49,7 +54,10 @@ const Home: React.FC = () => {
 					<div>{`There is a problem fetching the events data - ${error}`}</div>
 				)}
 				{data && (
-					<FilteredCardList myArrayOfCards={data}></FilteredCardList>
+					<FilteredCardList
+						fetchData={fetchData}
+						myArrayOfCards={data}
+					></FilteredCardList>
 				)}
 			</IonContent>
 		</IonPage>
