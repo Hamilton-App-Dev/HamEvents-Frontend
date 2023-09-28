@@ -12,8 +12,9 @@ import {
 } from "@ionic/react";
 
 import { useAuth0 } from "@auth0/auth0-react";
-
-import { home, person } from "ionicons/icons";
+import { App as CapApp } from "@capacitor/app";
+import { Browser } from "@capacitor/browser";
+import { useEffect } from "react";
 
 import { IonReactRouter } from "@ionic/react-router";
 import Home from "./pages/Home";
@@ -41,7 +42,19 @@ import "./theme/variables.css";
 setupIonicReact();
 
 const App: React.FC = () => {
-    const { isLoading } = useAuth0();
+    const { handleRedirectCallback, isLoading } = useAuth0();
+
+    useEffect(() => {
+        CapApp.addListener("appUrlOpen", async ({ url }) => {
+            if (
+                url.includes("state") &&
+                (url.includes("code") || url.includes("error"))
+            ) {
+                await handleRedirectCallback(url);
+            }
+            await Browser.close();
+        });
+    }, [handleRedirectCallback]);
 
     //Had to nest Switch inside IonouterOutlet to fix the issue of the details page not being immediately
     //rendered after clicking the button
@@ -56,9 +69,6 @@ const App: React.FC = () => {
                         <IonRouterOutlet>
                             <Route exact path="/home">
                                 <Home />
-                            </Route>
-                            <Route exact path="/profile">
-                                <User />
                             </Route>
                             <Redirect exact from="/" to="/home" />
                         </IonRouterOutlet>
