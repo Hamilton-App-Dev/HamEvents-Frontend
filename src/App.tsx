@@ -39,6 +39,7 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import "./App.css";
 
 setupIonicReact();
 
@@ -61,9 +62,10 @@ const App: React.FC = () => {
     //rendered after clicking the button
     if (isLoading) {
         return (
-        <div className="flex-center">
-            <IonSpinner name="crescent" color="secondary"></IonSpinner>
-        </div>);
+            <div className="flex-center">
+                <IonSpinner name="crescent" color="secondary"></IonSpinner>
+            </div>
+        );
     }
     return (
         <IonApp>
