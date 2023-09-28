@@ -4,6 +4,7 @@ import {
     IonPage,
     IonTitle,
     IonToolbar,
+    IonSpinner,
 } from "@ionic/react";
 import { IonTabs, IonTabBar, IonTabButton, IonIcon } from "@ionic/react";
 import React, { useEffect, useState } from "react";
@@ -49,7 +50,10 @@ const Home: React.FC = () => {
             </IonHeader>
 
             <IonContent fullscreen>
-                {loading && <h1>Loading...One moment please</h1>}
+                {loading && (
+                    <div className='flex-center'>
+                        <IonSpinner name="crescent" color="secondary"></IonSpinner>
+                    </div>)}
                 {error && (
                     <div>{`There is a problem fetching the events data - ${error}`}</div>
                 )}
