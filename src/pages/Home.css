@@ -1,0 +1,9 @@
+#root {
+    height: 100%;
+}
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+}

@@ -4,6 +4,6 @@ Welcome to the Hamilton Events mobile app frontend!
 
 `npm install`
 
-ionic cap open ios
+Build project for mobile:
 
-`ionic capacitor run ios -l --external`
+`ionic capacitor build ios`

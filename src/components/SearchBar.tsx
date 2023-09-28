@@ -111,7 +111,6 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 							<IonCardTitle className="cardName">
 								{card.name}
 							</IonCardTitle>
-							{/* <IonIcon icon={fast-food-outline}/> */}
 							<div>
 								{card.food && (
 									<IonIcon
@@ -120,11 +119,6 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 										color="warning"
 									/>
 								)}
-								<IonIcon
-									icon={flame}
-									size="large"
-									color="danger"
-								/>
 							</div>
 						</div>
 						<IonCardSubtitle style={{ fontWeight: "bold" }}>
@@ -140,14 +134,6 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 					</IonCardHeader>
 
 					<IonCardContent>{card.description}</IonCardContent>
-					<IonToolbar className="btnGroup">
-						<IonButtons slot="start"></IonButtons>
-						<IonButtons slot="end">
-							<IonButton className="btn" color="primary">
-								Attending
-							</IonButton>
-						</IonButtons>
-					</IonToolbar>
 				</IonCard>
 			))}
 			<IonInfiniteScroll
