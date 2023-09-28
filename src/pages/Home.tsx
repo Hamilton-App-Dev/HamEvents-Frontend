@@ -4,9 +4,14 @@ import {
     IonPage,
     IonTitle,
     IonToolbar,
+    IonButtons,
+    IonButton,
     IonSpinner,
+    IonIcon,
 } from "@ionic/react";
-import { IonTabs, IonTabBar, IonTabButton, IonIcon } from "@ionic/react";
+
+import { personCircle } from "ionicons/icons";
+
 import React, { useEffect, useState } from "react";
 import FilteredCardList from "../components/SearchBar";
 import "./Home.css";
@@ -42,18 +47,29 @@ const Home: React.FC = () => {
         <IonPage>
             <IonHeader>
                 <IonToolbar>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                        <IonTitle>Your Updates</IonTitle>
+                    <IonTitle>Your Updates</IonTitle>
+                    <IonButtons slot="primary">
+                        <IonButton id="click-trigger">
+                            <IonIcon
+                                slot="icon-only"
+                                color="medium"
+                                icon={personCircle}
+                            ></IonIcon>
+                        </IonButton>
                         <ProfileDropdown></ProfileDropdown>
-                    </div>
+                    </IonButtons>
                 </IonToolbar>
             </IonHeader>
 
             <IonContent fullscreen>
                 {loading && (
-                    <div className='flex-center'>
-                        <IonSpinner name="crescent" color="secondary"></IonSpinner>
-                    </div>)}
+                    <div className="flex-center">
+                        <IonSpinner
+                            name="crescent"
+                            color="secondary"
+                        ></IonSpinner>
+                    </div>
+                )}
                 {error && (
                     <div>{`There is a problem fetching the events data - ${error}`}</div>
                 )}
