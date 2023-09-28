@@ -9,6 +9,7 @@ import {
     IonTabButton,
     IonIcon,
     IonLabel,
+    IonSpinner,
 } from "@ionic/react";
 
 import { useAuth0 } from "@auth0/auth0-react";
@@ -59,7 +60,10 @@ const App: React.FC = () => {
     //Had to nest Switch inside IonouterOutlet to fix the issue of the details page not being immediately
     //rendered after clicking the button
     if (isLoading) {
-        return <div>Loading...</div>;
+        return (
+        <div className="flex-center">
+            <IonSpinner name="crescent" color="secondary"></IonSpinner>
+        </div>);
     }
     return (
         <IonApp>
