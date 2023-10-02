@@ -10,8 +10,6 @@ import { Capacitor } from "@capacitor/core";
 import { useEffect, useState } from "react";
 import {
 	BrowserRouter as Router,
-	Route,
-	Link,
 	useHistory,
 } from "react-router-dom";
 import {
@@ -19,9 +17,6 @@ import {
 	IonContent,
 	IonSearchbar,
 	IonCardSubtitle,
-	IonButton,
-	IonButtons,
-	IonToolbar,
 	IonInfiniteScrollContent,
 	IonInfiniteScroll,
 	IonCardContent,
@@ -31,7 +26,7 @@ import {
 import ScrollToTop from "react-scroll-to-top";
 import { IonIcon } from "@ionic/react";
 import { fastFood, logoIonic } from "ionicons/icons";
-import { flame } from "ionicons/icons";
+import EventCard from './HappeningNow';
 import "./SearchBar.css";
 import transformTime from "./TransformTime";
 type Card = {
@@ -120,6 +115,13 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 									/>
 								)}
 							</div>
+						</div>
+						<div style={{
+								marginTop: 5,
+								marginBottom: 5
+							}}
+						>
+							<EventCard startTime={card.event_time_start} endTime={card.event_time_end} />
 						</div>
 						<IonCardSubtitle style={{ fontWeight: "bold" }}>
 							{card.organization}
