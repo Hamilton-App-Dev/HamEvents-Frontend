@@ -47,15 +47,6 @@ const Home: React.FC = () => {
             <IonHeader>
                 <IonToolbar>
                     <IonTitle>Your Updates</IonTitle>
-                    <IonButtons slot="primary">
-                        <IonButton id="click-trigger">
-                            <IonIcon
-                                slot="icon-only"
-                                color="medium"
-                                icon={personCircle}
-                            ></IonIcon>
-                        </IonButton>
-                    </IonButtons>
                 </IonToolbar>
             </IonHeader>
 
