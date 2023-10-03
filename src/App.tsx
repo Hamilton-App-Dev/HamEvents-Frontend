@@ -44,29 +44,8 @@ import "./App.css";
 setupIonicReact();
 
 const App: React.FC = () => {
-    const { handleRedirectCallback, isLoading } = useAuth0();
-
-    useEffect(() => {
-        CapApp.addListener("appUrlOpen", async ({ url }) => {
-            if (
-                url.includes("state") &&
-                (url.includes("code") || url.includes("error"))
-            ) {
-                await handleRedirectCallback(url);
-            }
-            await Browser.close();
-        });
-    }, [handleRedirectCallback]);
-
     //Had to nest Switch inside IonouterOutlet to fix the issue of the details page not being immediately
     //rendered after clicking the button
-    if (isLoading) {
-        return (
-            <div className="flex-center">
-                <IonSpinner name="crescent" color="secondary"></IonSpinner>
-            </div>
-        );
-    }
     return (
         <IonApp>
             <IonReactRouter>
