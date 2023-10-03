@@ -108,7 +108,7 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
                                     <IonIcon
                                         icon={fastFood}
                                         size="large"
-                                        color="primary"
+                                        color="warning"
                                     />
                                 )}
                             </div>
