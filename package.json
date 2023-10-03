@@ -1,6 +1,6 @@
 {
 	"name": "HamEvents-Frontend",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"private": true,
 	"dependencies": {
 		"@auth0/auth0-react": "^2.0.1",

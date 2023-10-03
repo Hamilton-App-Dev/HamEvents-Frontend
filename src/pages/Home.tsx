@@ -15,7 +15,6 @@ import { personCircle } from "ionicons/icons";
 import React, { useEffect, useState } from "react";
 import FilteredCardList from "../components/SearchBar";
 import "./Home.css";
-import ProfileDropdown from "../components/ProfileDropdown";
 
 const Home: React.FC = () => {
     const [data, setData] = useState(null);
@@ -48,16 +47,6 @@ const Home: React.FC = () => {
             <IonHeader>
                 <IonToolbar>
                     <IonTitle>Your Updates</IonTitle>
-                    <IonButtons slot="primary">
-                        <IonButton id="click-trigger">
-                            <IonIcon
-                                slot="icon-only"
-                                color="medium"
-                                icon={personCircle}
-                            ></IonIcon>
-                        </IonButton>
-                        <ProfileDropdown></ProfileDropdown>
-                    </IonButtons>
                 </IonToolbar>
             </IonHeader>
 
