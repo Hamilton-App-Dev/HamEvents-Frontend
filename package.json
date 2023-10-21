@@ -76,6 +76,7 @@
 		]
 	},
 	"devDependencies": {
+		"@capacitor/assets": "^3.0.1",
 		"@capacitor/cli": "4.7.0",
 		"@types/react": "^18.0.38",
 		"@types/react-dom": "^18.0.11",
