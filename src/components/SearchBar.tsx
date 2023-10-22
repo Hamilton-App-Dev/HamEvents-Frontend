@@ -7,7 +7,7 @@ import {
 } from "@ionic/react";
 
 import { Capacitor } from "@capacitor/core";
-import { useEffect, useState } from "react";
+import { useEffect, useState, createRef } from "react";
 import {
 	BrowserRouter as Router,
 	Route,
@@ -27,11 +27,10 @@ import {
 	IonCardContent,
 	IonCardHeader,
 	IonCardTitle,
+	ScrollDetail
 } from "@ionic/react";
-import ScrollToTop from "react-scroll-to-top";
 import { IonIcon } from "@ionic/react";
-import { logoIonic } from "ionicons/icons";
-import { flame } from "ionicons/icons";
+import { flame, caretUpOutline } from "ionicons/icons";
 import "./SearchBar.css";
 import transformTime from "./TransformTime";
 type Card = {
@@ -54,6 +53,7 @@ type Props = {
 
 const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 	const [searchTerm, setSearchTerm] = useState("");
+	const [display_scroll_to_top, set_display_scroll_to_top] = useState(false);
 	const [cards, setCards] = useState(myArrayOfCards.slice(0, 5));
 	const isWeb = Capacitor.getPlatform() === "web";
 
@@ -77,6 +77,20 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 		window.location.href = `/details/${id}`;
 	};
 
+	function scrollToTop() {
+		contentRef.current?.scrollToTop(500);
+	}
+
+	async function handleScroll(ev: CustomEvent<ScrollDetail>) {
+		if (ev.detail.currentY > 500) {
+			set_display_scroll_to_top(true)
+		} else {
+			set_display_scroll_to_top(false)
+		}
+	}
+
+	const contentRef = createRef<HTMLIonContentElement>();
+
 	useEffect(() => {
 		const filteredCards = myArrayOfCards.filter((card) =>
 			card.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -85,14 +99,14 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 	}, [searchTerm, myArrayOfCards]);
 
 	return (
-		<IonContent className="container">
+		<IonContent className="container" ref={contentRef}
+			scrollEvents={true}
+			onIonScroll={handleScroll}>
 			{!isWeb && (
 				<IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
 					<IonRefresherContent />
 				</IonRefresher>
 			)}
-
-			<ScrollToTop smooth color="#6f00ff" />
 			<IonSearchbar
 				placeholder="Search for an event..."
 				value={searchTerm}
@@ -108,14 +122,13 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 								alignItems: "center",
 							}}
 						>
-							<IonCardTitle className="cardName">
-								{card.name}
-							</IonCardTitle>
+							<IonCardTitle className="cardName">{card.name}</IonCardTitle>
 							<IonIcon icon={flame} size="large" color="danger" />
 						</div>
 						<IonCardSubtitle style={{ fontWeight: "bold" }}>
 							{card.organization}
 						</IonCardSubtitle>
+						<IonCardSubtitle>{card.location.split(",")[0]}</IonCardSubtitle>
 						<IonCardSubtitle>
 							{card.location.split(",")[0]}
 						</IonCardSubtitle>
@@ -128,6 +141,13 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 					<IonCardContent>{card.description}</IonCardContent>
 				</IonCard>
 			))}
+
+			{display_scroll_to_top && (
+				<IonButton slot="fixed" onClick={scrollToTop} size="small">
+					<IonIcon icon={caretUpOutline} size="large" color="white" />
+				</IonButton>
+			)}
+
 			<IonInfiniteScroll
 				onIonInfinite={(ev) => {
 					loadMoreCards();
