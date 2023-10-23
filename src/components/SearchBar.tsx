@@ -1,9 +1,11 @@
 //filter and render events
 //need a go back to top button
 import {
+	IonButton,
 	IonRefresher,
 	IonRefresherContent,
 	RefresherEventDetail,
+	useIonToast,
 } from "@ionic/react";
 
 import { Capacitor } from "@capacitor/core";
@@ -27,6 +29,7 @@ import { fastFood, logoIonic } from "ionicons/icons";
 import EventCard from "./HappeningNow";
 import "./SearchBar.css";
 import transformTime from "./TransformTime";
+import createGoogleCalendarLink from "../utils/createCalendarLink";
 type Card = {
 	id: string;
 	name: string;
@@ -49,6 +52,7 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [cards, setCards] = useState(myArrayOfCards.slice(0, 5));
 	const isWeb = Capacitor.getPlatform() === "web";
+	const [presentToast] = useIonToast();
 
 	function handleRefresh(event: CustomEvent<RefresherEventDetail>) {
 		fetchData();
@@ -76,6 +80,31 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 		);
 		setCards(filteredCards.slice(0, 5));
 	}, [searchTerm, myArrayOfCards]);
+
+	const handleSaveToCalendar = (card: Card) => {
+		const googleCalendarUrl = createGoogleCalendarLink(card);
+		window.open(googleCalendarUrl, "_system");
+	};
+
+	const handleRSVP = (card: Card) => {
+		presentToast({
+			message: "RSVP'd! Would you like to save to your calendar?",
+			duration: 5000,
+			buttons: [
+				{
+					text: "Yes",
+					role: "info",
+					handler: () => {
+						handleSaveToCalendar(card);
+					},
+				},
+				{
+					text: "Dismiss",
+					role: "cancel",
+				},
+			],
+		});
+	};
 
 	return (
 		<IonContent className="container">
@@ -139,13 +168,25 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 								</IonCardSubtitle>
 							</IonCardHeader>
 
-							<IonCardContent>{card.description}</IonCardContent>
+							<div
+								style={{
+									display: "flex",
+									justifyContent: "end",
+									alignItems: "end",
+									paddingRight: 10,
+									paddingBottom: 10,
+								}}
+							>
+								<IonButton onClick={() => handleRSVP(card)}>
+									RSVP Now
+								</IonButton>
+							</div>
 						</IonCard>
 					))}
 					<IonInfiniteScroll
 						onIonInfinite={(ev) => {
 							loadMoreCards();
-							setTimeout(() => ev.target.complete(), 500);
+							setTimeout(() => ev.target.complete(), 50);
 						}}
 					>
 						<IonInfiniteScrollContent loadingSpinner="bubbles"></IonInfiniteScrollContent>
