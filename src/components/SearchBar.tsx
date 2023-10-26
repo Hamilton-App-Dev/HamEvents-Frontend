@@ -113,7 +113,7 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 				onIonChange={(e) => setSearchTerm(e.detail.value!)}
 			></IonSearchbar>
 
-			{scrollToTop && (
+			{displayScrollToTopButton && (
 				<IonFab slot="fixed" vertical="bottom" horizontal="end">
 					<IonFabButton onClick={scrollToTop}>
 						<IonIcon
