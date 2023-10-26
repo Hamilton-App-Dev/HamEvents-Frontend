@@ -9,11 +9,13 @@ import {
     IonTabButton,
     IonIcon,
     IonLabel,
+    IonSpinner,
 } from "@ionic/react";
 
 import { useAuth0 } from "@auth0/auth0-react";
-
-import { home, person } from "ionicons/icons";
+import { App as CapApp } from "@capacitor/app";
+import { Browser } from "@capacitor/browser";
+import { useEffect } from "react";
 
 import { IonReactRouter } from "@ionic/react-router";
 import Home from "./pages/Home";
@@ -37,17 +39,13 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import "./App.css";
 
 setupIonicReact();
 
 const App: React.FC = () => {
-    const { isLoading } = useAuth0();
-
     //Had to nest Switch inside IonouterOutlet to fix the issue of the details page not being immediately
     //rendered after clicking the button
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
     return (
         <IonApp>
             <IonReactRouter>
@@ -56,9 +54,6 @@ const App: React.FC = () => {
                         <IonRouterOutlet>
                             <Route exact path="/home">
                                 <Home />
-                            </Route>
-                            <Route exact path="/profile">
-                                <User />
                             </Route>
                             <Redirect exact from="/" to="/home" />
                         </IonRouterOutlet>

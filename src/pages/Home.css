@@ -1,0 +1,19 @@
+#root {
+    height: 100%;
+}
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+}
+
+.profile-button-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.chip-container {
+    margin: 0;
+}
