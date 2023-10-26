@@ -1,6 +1,7 @@
 //filter and render events
 //need a go back to top button
 import {
+	IonFabButton,
 	IonRefresher,
 	IonRefresherContent,
 	RefresherEventDetail,
@@ -48,7 +49,8 @@ type Props = {
 
 const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 	const [searchTerm, setSearchTerm] = useState("");
-	const [display_scroll_to_top, set_display_scroll_to_top] = useState(false);
+	const [displayScrollToTopButton, setDisplayScrollToTopButton] =
+		useState(false);
 	const [cards, setCards] = useState(myArrayOfCards.slice(0, 5));
 	const isWeb = Capacitor.getPlatform() === "web";
 
@@ -78,9 +80,9 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 
 	async function handleScroll(ev: CustomEvent<ScrollDetail>) {
 		if (ev.detail.currentY > 500) {
-			set_display_scroll_to_top(true);
+			setDisplayScrollToTopButton(true);
 		} else {
-			set_display_scroll_to_top(false);
+			setDisplayScrollToTopButton(false);
 		}
 	}
 
@@ -110,6 +112,19 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 				value={searchTerm}
 				onIonChange={(e) => setSearchTerm(e.detail.value!)}
 			></IonSearchbar>
+
+			{scrollToTop && (
+				<IonFab slot="fixed" vertical="bottom" horizontal="end">
+					<IonFabButton onClick={scrollToTop}>
+						<IonIcon
+							icon={caretUpOutline}
+							size="large"
+							color="white"
+						/>
+					</IonFabButton>
+				</IonFab>
+			)}
+
 			{cards.length > 0 ? (
 				<div>
 					{cards.map((card) => (
@@ -161,19 +176,10 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 							<IonCardContent>{card.description}</IonCardContent>
 						</IonCard>
 					))}
-					{display_scroll_to_top && (
-						<IonFab slot="fixed" onClick={scrollToTop}>
-							<IonIcon
-								icon={caretUpOutline}
-								size="large"
-								color="white"
-							/>
-						</IonFab>
-					)}
 					<IonInfiniteScroll
 						onIonInfinite={(ev) => {
 							loadMoreCards();
-							setTimeout(() => ev.target.complete(), 500);
+							setTimeout(() => ev.target.complete(), 50);
 						}}
 					>
 						<IonInfiniteScrollContent loadingSpinner="bubbles"></IonInfiniteScrollContent>
