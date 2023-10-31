@@ -50,6 +50,7 @@
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
+		"serve": "yarn watch:css & ionic capacitor run ios -l --external",
 		"eject": "react-scripts eject",
 		"test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
 		"preinstall": "npm install --package-lock-only --ignore-scripts && npx npm-force-resolutions",
@@ -79,6 +80,7 @@
 		]
 	},
 	"devDependencies": {
+		"@capacitor/assets": "^3.0.1",
 		"@capacitor/cli": "4.7.0",
 		"@types/react": "^18.0.38",
 		"@types/react-dom": "^18.0.11",
