@@ -1,15 +1,15 @@
 import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {
-    IonApp,
-    IonTabs,
-    IonRouterOutlet,
-    setupIonicReact,
-    IonTabBar,
-    IonTabButton,
-    IonIcon,
-    IonLabel,
-    IonSpinner,
+	IonApp,
+	IonTabs,
+	IonRouterOutlet,
+	setupIonicReact,
+	IonTabBar,
+	IonTabButton,
+	IonIcon,
+	IonLabel,
+	IonSpinner,
 } from "@ionic/react";
 
 import { useAuth0 } from "@auth0/auth0-react";
@@ -39,29 +39,30 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import "./theme/tailwind.css";
 import "./App.css";
 
 setupIonicReact();
 
 const App: React.FC = () => {
-    //Had to nest Switch inside IonouterOutlet to fix the issue of the details page not being immediately
-    //rendered after clicking the button
-    return (
-        <IonApp>
-            <IonReactRouter>
-                <Switch>
-                    <Route path="/">
-                        <IonRouterOutlet>
-                            <Route exact path="/home">
-                                <Home />
-                            </Route>
-                            <Redirect exact from="/" to="/home" />
-                        </IonRouterOutlet>
-                    </Route>
-                </Switch>
-            </IonReactRouter>
-        </IonApp>
-    );
+	//Had to nest Switch inside IonouterOutlet to fix the issue of the details page not being immediately
+	//rendered after clicking the button
+	return (
+		<IonApp>
+			<IonReactRouter>
+				<Switch>
+					<Route path="/">
+						<IonRouterOutlet>
+							<Route exact path="/home">
+								<Home />
+							</Route>
+							<Redirect exact from="/" to="/home" />
+						</IonRouterOutlet>
+					</Route>
+				</Switch>
+			</IonReactRouter>
+		</IonApp>
+	);
 };
 
 export default App;

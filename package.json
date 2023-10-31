@@ -50,9 +50,13 @@
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
+		"serve": "yarn watch:css & ionic capacitor run ios -l --external",
 		"eject": "react-scripts eject",
 		"test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
-		"preinstall": "npm install --package-lock-only --ignore-scripts && npx npm-force-resolutions"
+		"preinstall": "npm install --package-lock-only --ignore-scripts && npx npm-force-resolutions",
+		"build:css": "postcss tailwind.css -o src/theme/tailwind.css",
+		"watch:css": "postcss tailwind.css -o src/theme/tailwind.css -w",
+		"start:dev": "yarn watch:css & ionic capacitor run ios -l --external"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -80,7 +84,10 @@
 		"@capacitor/cli": "4.7.0",
 		"@types/react": "^18.0.38",
 		"@types/react-dom": "^18.0.11",
-		"@types/react-router-dom": "^5.3.3"
+		"@types/react-router-dom": "^5.3.3",
+		"autoprefixer": "^10.4.16",
+		"postcss-cli": "^10.1.0",
+		"tailwindcss": "^3.3.3"
 	},
 	"description": "An Ionic project"
 }
