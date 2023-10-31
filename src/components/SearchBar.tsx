@@ -117,7 +117,6 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
 
     return (
         <IonContent
-            className="container"
             ref={contentRef}
             scrollEvents={true}
             onIonScroll={handleScroll}
