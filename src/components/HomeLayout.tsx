@@ -1,37 +1,21 @@
-//filter and render events
-//need a go back to top button
 import {
-    IonButton,
-    IonButtons,
     IonRefresher,
     IonFabButton,
     IonRefresherContent,
-    IonToolbar,
     RefresherEventDetail,
-    useIonToast,
-} from "@ionic/react";
-
-import { Capacitor } from "@capacitor/core";
-import { useEffect, useState, createRef } from "react";
-import { BrowserRouter as Router, useHistory } from "react-router-dom";
-import {
-    IonCard,
     IonContent,
     IonSearchbar,
-    IonCardSubtitle,
     IonInfiniteScrollContent,
     IonInfiniteScroll,
-    IonCardContent,
-    IonCardHeader,
-    IonCardTitle,
     ScrollDetail,
     IonFab,
 } from "@ionic/react";
-import NoResult from "./NoResult";
+import { Capacitor } from "@capacitor/core";
+import { useEffect, useState, createRef } from "react";
 import { IonIcon } from "@ionic/react";
-import { fastFood, logoIonic, caretUpOutline } from "ionicons/icons";
+import { caretUpOutline } from "ionicons/icons";
 import EventCard from "./EventCard";
-import "./SearchBar.css";
+import NoResult from "./NoResult";
 import { Card } from "../types";
 
 type Props = {
@@ -39,7 +23,7 @@ type Props = {
     fetchData: () => void;
 };
 
-const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
+const HomeLayout: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [displayScrollToTopButton, setDisplayScrollToTopButton] =
         useState(false);
@@ -60,11 +44,6 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
         setCards([...cards, ...nextCards]);
     }
 
-    const history = useHistory();
-    const handleDetails = (id: string) => {
-        history.push(`/details/${id}`, { data: myArrayOfCards });
-        window.location.href = `/details/${id}`;
-    };
     const contentRef = createRef<HTMLIonContentElement>();
 
     function scrollToTop() {
@@ -136,4 +115,4 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
     );
 };
 
-export default FilteredCardList;
+export default HomeLayout;
