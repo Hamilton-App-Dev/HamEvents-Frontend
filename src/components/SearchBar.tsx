@@ -30,10 +30,8 @@ import {
 import NoResult from "./NoResult";
 import { IonIcon } from "@ionic/react";
 import { fastFood, logoIonic, caretUpOutline } from "ionicons/icons";
-import EventCard from "./HappeningNow";
+import EventCard from "./EventCard";
 import "./SearchBar.css";
-import transformTime from "./TransformTime";
-import createGoogleCalendarLink from "../utils/createCalendarLink";
 import { Card } from "../types";
 
 type Props = {
@@ -47,7 +45,6 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
         useState(false);
     const [cards, setCards] = useState(myArrayOfCards.slice(0, 5));
     const isWeb = Capacitor.getPlatform() === "web";
-    const [presentToast] = useIonToast();
 
     function handleRefresh(event: CustomEvent<RefresherEventDetail>) {
         fetchData();
@@ -89,32 +86,6 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
         setCards(filteredCards.slice(0, 5));
     }, [searchTerm, myArrayOfCards]);
 
-    const handleSaveToCalendar = (card: Card) => {
-        const googleCalendarUrl = createGoogleCalendarLink(card);
-        window.open(googleCalendarUrl, "_system");
-    };
-
-    const handleRSVP = (card: Card) => {
-        const msg = `RSVP'd to ${card.name}! Would you like to save to your calendar?`;
-        presentToast({
-            message: msg,
-            duration: 10000,
-            buttons: [
-                {
-                    text: "Yes",
-                    role: "info",
-                    handler: () => {
-                        handleSaveToCalendar(card);
-                    },
-                },
-                {
-                    text: "No",
-                    role: "cancel",
-                },
-            ],
-        });
-    };
-
     return (
         <IonContent
             ref={contentRef}
@@ -147,61 +118,7 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
             {cards.length > 0 ? (
                 <div>
                     {cards.map((card) => (
-                        <IonCard key={card.id}>
-                            <IonCardHeader className="header">
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        justifyContent: "space-between",
-                                        alignItems: "center",
-                                    }}
-                                >
-                                    <IonCardTitle className="cardName">
-                                        {card.name}
-                                    </IonCardTitle>
-                                    <div>
-                                        {card.food && (
-                                            <IonIcon
-                                                icon={fastFood}
-                                                size="large"
-                                                color="warning"
-                                            />
-                                        )}
-                                    </div>
-                                </div>
-                                <div
-                                    style={{
-                                        marginTop: 5,
-                                        marginBottom: 5,
-                                    }}
-                                >
-                                    <EventCard
-                                        startTime={card.event_time_start}
-                                        endTime={card.event_time_end}
-                                    />
-                                </div>
-                                <IonCardSubtitle style={{ fontWeight: "bold" }}>
-                                    {card.organization}
-                                </IonCardSubtitle>
-                                <IonCardSubtitle>
-                                    {card.location.split(",")[0]}
-                                </IonCardSubtitle>
-                                <IonCardSubtitle>
-                                    {transformTime(card).start} -{" "}
-                                    {transformTime(card).end}
-                                </IonCardSubtitle>
-                            </IonCardHeader>
-                            <IonToolbar color="medium">
-                                <IonButtons className="justify-center">
-                                    <IonButton
-                                        className="font-bold"
-                                        onClick={() => handleRSVP(card)}
-                                    >
-                                        RSVP Now
-                                    </IonButton>
-                                </IonButtons>
-                            </IonToolbar>
-                        </IonCard>
+                        <EventCard card={card} />
                     ))}
                     <IonInfiniteScroll
                         onIonInfinite={(ev) => {
