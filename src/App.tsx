@@ -1,25 +1,19 @@
 import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {
-	IonApp,
-	IonTabs,
-	IonRouterOutlet,
-	setupIonicReact,
-	IonTabBar,
-	IonTabButton,
-	IonIcon,
-	IonLabel,
-	IonSpinner,
+    IonApp,
+    IonTabs,
+    IonRouterOutlet,
+    setupIonicReact,
+    IonTabBar,
+    IonTabButton,
+    IonIcon,
+    IonLabel,
+    IonSpinner,
 } from "@ionic/react";
-
-import { useAuth0 } from "@auth0/auth0-react";
-import { App as CapApp } from "@capacitor/app";
-import { Browser } from "@capacitor/browser";
-import { useEffect } from "react";
 
 import { IonReactRouter } from "@ionic/react-router";
 import Home from "./pages/Home";
-import User from "./pages/User";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -45,24 +39,24 @@ import "./App.css";
 setupIonicReact();
 
 const App: React.FC = () => {
-	//Had to nest Switch inside IonouterOutlet to fix the issue of the details page not being immediately
-	//rendered after clicking the button
-	return (
-		<IonApp>
-			<IonReactRouter>
-				<Switch>
-					<Route path="/">
-						<IonRouterOutlet>
-							<Route exact path="/home">
-								<Home />
-							</Route>
-							<Redirect exact from="/" to="/home" />
-						</IonRouterOutlet>
-					</Route>
-				</Switch>
-			</IonReactRouter>
-		</IonApp>
-	);
+    //Had to nest Switch inside IonouterOutlet to fix the issue of the details page not being immediately
+    //rendered after clicking the button
+    return (
+        <IonApp>
+            <IonReactRouter>
+                <Switch>
+                    <Route path="/">
+                        <IonRouterOutlet>
+                            <Route exact path="/home">
+                                <Home />
+                            </Route>
+                            <Redirect exact from="/" to="/home" />
+                        </IonRouterOutlet>
+                    </Route>
+                </Switch>
+            </IonReactRouter>
+        </IonApp>
+    );
 };
 
 export default App;

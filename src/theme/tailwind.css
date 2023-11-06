@@ -523,6 +523,18 @@ video {
 .relative {
   position: relative;
 }
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+.mt-1 {
+  margin-top: 0.25rem;
+}
+.mt-2 {
+  margin-top: 0.5rem;
+}
+.mt-3 {
+  margin-top: 0.75rem;
+}
 .block {
   display: block;
 }
@@ -547,11 +559,17 @@ video {
 .resize {
   resize: both;
 }
+.items-center {
+  align-items: center;
+}
 .justify-end {
   justify-content: flex-end;
 }
 .justify-center {
   justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
 }
 .border {
   border-width: 1px;

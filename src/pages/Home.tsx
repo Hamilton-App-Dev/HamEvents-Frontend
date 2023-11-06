@@ -13,16 +13,18 @@ import {
 import { personCircle } from "ionicons/icons";
 
 import React, { useEffect, useState } from "react";
-import FilteredCardList from "../components/SearchBar";
 import "./Home.css";
+import HomeLayout from "../components/HomeLayout";
 
 const Home: React.FC = () => {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    const url = process.env.REACT_APP_API_URL ?? "";
+    console.log(url);
     const fetchData = () => {
-        fetch(`https://events-backend-hquq.onrender.com/events`)
+        fetch(url)
             .then((response) => response.json())
             .then((actualData) => {
                 console.log(actualData);
@@ -60,13 +62,15 @@ const Home: React.FC = () => {
                     </div>
                 )}
                 {error && (
-                    <div>{`There is a problem fetching the events data - ${error}`}</div>
+                    <div>
+                        There is a problem fetching the events data - {error}
+                    </div>
                 )}
                 {data && (
-                    <FilteredCardList
+                    <HomeLayout
                         fetchData={fetchData}
                         myArrayOfCards={data}
-                    ></FilteredCardList>
+                    ></HomeLayout>
                 )}
             </IonContent>
         </IonPage>
