@@ -35,6 +35,9 @@ import "./SearchBar.css";
 import transformTime from "./TransformTime";
 import createGoogleCalendarLink from "../utils/createCalendarLink";
 import { Card } from "../types";
+import { Keyboard } from '@capacitor/keyboard';
+
+
 
 type Props = {
     myArrayOfCards: Card[];
@@ -80,6 +83,7 @@ const FilteredCardList: React.FC<Props> = ({ myArrayOfCards, fetchData }) => {
         } else {
             setDisplayScrollToTopButton(false);
         }
+        Keyboard.hide();
     }
 
     useEffect(() => {

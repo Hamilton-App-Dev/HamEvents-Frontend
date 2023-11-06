@@ -1194,7 +1194,7 @@
   "resolved" "https://registry.npmjs.org/@capacitor/ios/-/ios-4.7.0.tgz"
   "version" "4.7.0"
 
-"@capacitor/keyboard@4.1.1":
+"@capacitor/keyboard@^4.1.1":
   "integrity" "sha512-fdC7u2TeG4BqwC0LnPnhOdya31C4QKdhk/8pc5lxI9X5jyYAetMCN1kEkKa7KREw4DdzXotJt27B9BXxAza6og=="
   "resolved" "https://registry.npmjs.org/@capacitor/keyboard/-/keyboard-4.1.1.tgz"
   "version" "4.1.1"
@@ -2534,9 +2534,9 @@
   "version" "21.0.0"
 
 "@types/yargs@^15.0.0":
-  "integrity" "sha512-2FeD5qezW3FvLpZ0JpfuaEWepgNLl9b2gQYiz/ce0NhoB1W/D+VZu98phITXkADYerfr/jb7JcDcVhITsc9bwg=="
-  "resolved" "https://registry.npmjs.org/@types/yargs/-/yargs-15.0.16.tgz"
-  "version" "15.0.16"
+  "integrity" "sha512-cj53I8GUcWJIgWVTSVe2L7NJAB5XWGdsoMosVvUgv1jEnMbAcsbaCzt1coUcyi8Sda5PgTWAooG8jNyDTD+CWA=="
+  "resolved" "https://registry.npmjs.org/@types/yargs/-/yargs-15.0.17.tgz"
+  "version" "15.0.17"
   dependencies:
     "@types/yargs-parser" "*"
 
